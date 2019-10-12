@@ -1,0 +1,3 @@
+include ':app', ':PhysicaloidLibrary'
+rootProject.name='ĐK Nhà Yến'
+include ':openCVLibrary347'

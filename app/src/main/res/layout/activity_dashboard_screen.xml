@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    tools:context="vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:background="@drawable/blue_raspberry">
+
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="?android:actionBarSize"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:src="@drawable/logo_ntu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:shadowColor="@color/colorAccent"
+            android:shadowDx="1"
+            android:shadowDy="2"
+            android:shadowRadius="3"
+            android:text="@string/project_name"
+            android:textAllCaps="true"
+            android:textColor="@color/whiteSmokeWhite"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/appPowerOff"
+            android:layout_width="?android:actionBarSize"
+            android:layout_height="?android:actionBarSize"
+            android:layout_alignParentEnd="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="5dp"
+            android:src="@drawable/power_off_icon" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/moonlit_asteroid"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:shadowColor="@color/whiteSmokeWhite"
+                android:shadowDx="2"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:text="@string/timer_categories"
+                android:textAlignment="center"
+                android:textColor="@color/whiteSmokeWhite"
+                android:textFontWeight="400"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/line_break"
+                android:tint="@android:color/white" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/timerList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/addNewTimerBtn" />
+
+                <TextView
+                    android:id="@+id/timerListEmptyNotify"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/addNewTimerBtn"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="Chưa có mục hẹn giờ nào."
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/addNewTimerBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/cool_blues"
+                    android:text="@string/addNew"
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="#899"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:shadowColor="@color/whiteSmokeWhite"
+                android:shadowDx="2"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:text="@string/onlineWatching"
+                android:textAlignment="center"
+                android:textColor="@color/whiteSmokeWhite"
+                android:textFontWeight="400"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/line_break"
+                android:tint="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="4">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="40dp"
+                            android:text="@string/camera_not_found"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <org.opencv.android.JavaCameraView
+                        android:id="@+id/imageCaptureFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#000"
+                        android:visibility="gone"
+                        app:camera_id="any"
+                        app:show_fps="false" />
+                    <ImageView
+                        android:id="@+id/imageCaptured"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#000"
+                        android:visibility="gone"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="#222f3e"
+                    android:orientation="vertical"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="2"
+                        tools:ignore="NestedWeights">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center|left"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="5dp"
+                                android:src="@drawable/alarm_clock" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Bây giờ là: "
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/currentTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Chưa xác định"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:paddingLeft="15dp">
+
+                            <com.github.ybq.android.spinkit.SpinKitView
+                                style="@style/SpinKitView.DoubleBounce"
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:padding="5dp"
+                                app:SpinKit_Color="@color/successColor" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Đã theo dõi: "
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/establishTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Chưa xác định"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="2"
+                        tools:ignore="NestedWeights">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center|left"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="5dp"
+                                android:src="@drawable/humidity" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Độ ẩm: "
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/humidity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Chưa xác định"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="15dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:src="@drawable/temperature" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Nhiệt độ: "
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/temperature"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Chưa xác định"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

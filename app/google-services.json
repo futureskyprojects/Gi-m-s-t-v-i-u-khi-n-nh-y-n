@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "902525208454",
+    "firebase_url": "https://giamsatvadieukhiennhayen.firebaseio.com",
+    "project_id": "giamsatvadieukhiennhayen",
+    "storage_bucket": "giamsatvadieukhiennhayen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902525208454:android:20c28af343114dbe33ce07",
+        "android_client_info": {
+          "package_name": "vn.vistark.dk_nha_yen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902525208454-l4urd59101io99f6lh1e5bpetdmmbsb1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.vistark.dk_nha_yen",
+            "certificate_hash": "4e69889006ad2807e7defd79edf054dbe1545f42"
+          }
+        },
+        {
+          "client_id": "902525208454-03oqgj79stb1cftl6a95vfttklnta8k1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiqjYgas9REC3HYnGSpdXAJh4K9ZJfHBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902525208454-03oqgj79stb1cftl6a95vfttklnta8k1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:background="@drawable/blue_raspberry">
+
+        <ImageView
+            android:id="@+id/addTimerIcon"
+            android:layout_width="?android:actionBarSize"
+            android:layout_height="?android:actionBarSize"
+            android:padding="15dp"
+            android:src="@drawable/stopwatch" />
+
+        <TextView
+            android:id="@+id/addTimerHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@id/addTimerClose"
+            android:layout_toEndOf="@id/addTimerIcon"
+            android:gravity="center"
+            android:text="@string/addTimerOnOff"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/addTimerClose"
+            android:layout_width="?android:actionBarSize"
+            android:layout_height="?android:actionBarSize"
+            android:layout_alignParentRight="true"
+            android:padding="15dp"
+            android:src="@drawable/close"
+            android:tint="@android:color/white" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/addTimerLabelInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/base_input"
+                android:gravity="center"
+                android:hint="Nhãn cho mục hẹn giờ"
+                android:textAlignment="center" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/addTimerPortSelector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/base_select_group">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/addTimerPortARadioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:checked="false"
+                            android:text="Cổng A" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/addTimerPortBRadioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:checked="false"
+                            android:text="Cổng B" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/addTimerPortCRadioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:checked="false"
+                            android:text="Cổng C" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/addTimerPortDRadioButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:checked="false"
+                            android:text="Cổng D" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/addTimerTimeStartSelector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/base_input"
+                android:clickable="true"
+                android:drawableStart="@drawable/play_arrow_small"
+                android:drawablePadding="5dp"
+                android:focusable="true"
+                android:hint="Thời gian bắt đầu"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/addTimerTimeEndSelector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:background="@drawable/base_input"
+                android:clickable="true"
+                android:drawableStart="@drawable/stop_small"
+                android:drawablePadding="5dp"
+                android:focusable="true"
+                android:hint="Thời gian kết thúc"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/addTimerAddButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/quepal"
+                android:text="@string/add"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

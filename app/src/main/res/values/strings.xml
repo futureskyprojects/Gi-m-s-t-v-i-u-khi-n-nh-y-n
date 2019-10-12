@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GS Nhà Yến</string>
+    <string name="project_name">HỆ THỐNG GIÁM SÁT - ĐIỀU KHIỂN NHÀ NUÔI CHIM YẾN</string>
+    <string name="timer_categories">DANH MỤC HẸN GIỜ</string>
+    <string name="onlineWatching">THEO DÕI TRỰC TUYẾN</string>
+    <string name="camera_not_found">Không thể kết nối đến camera.\n Vui lòng kiểm tra lại kết nối.</string>
+    <string name="addNew">THÊM MỚI</string>
+    <string name="edit">SỬA</string>
+    <string name="addTimerOnOff">THÊM HẸN GIỜ BẬT - TẮT</string>
+    <string name="editTimerOnOff">SỬA HẸN GIỜ BẬT - TẮT</string>
+    <string name="cancel">Hủy</string>
+    <string name="add">Thêm</string>
+</resources>

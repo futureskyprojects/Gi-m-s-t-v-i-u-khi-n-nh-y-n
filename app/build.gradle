@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "vn.vistark.dk_nha_yen"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.firebase:firebase-database:16.0.4'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // https://github.com/square/retrofit - Dành cho structure API
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+
+    // https://github.com/google/gson - Dành cho Json prase
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    // https://github.com/ybq/Android-SpinKit - Dành cho các icon load xoay đẹp
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    // https://github.com/hdodenhof/CircleImageView - Dành cho bo tròn ảnh
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+
+    // https://github.com/GrenderG/Toasty - Dành cho việc hiển thị toast
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
+
+    // https://developer.android.com/jetpack/androidx/releases/recyclerview - Dành cho hiển thị danh sách
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
+
+    // https://jitpack.io/p/Leogiroux/sweet-alert-dialog - Dành cho việc hiển thị các hộp thoại thông báo
+    implementation 'com.github.f0ris.sweetalert:library:1.5.1'
+    implementation project(path: ':openCVLibrary347')
+    implementation project(path: ':PhysicaloidLibrary')
+}
