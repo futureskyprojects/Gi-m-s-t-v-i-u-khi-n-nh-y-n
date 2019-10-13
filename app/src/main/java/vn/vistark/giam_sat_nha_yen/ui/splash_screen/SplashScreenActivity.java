@@ -59,6 +59,7 @@ public class SplashScreenActivity extends AppCompatActivity implements BaseAppCo
             public void run() {
                 Intent dashboardScreenIntent = new Intent(SplashScreenActivity.this, DashboardScreenActivity.class);
                 startActivity(dashboardScreenIntent);
+                SplashScreenActivity.this.finish();
             }
         });
     }

@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     void startSplashScreen() {
         Intent splashScreenIntent = new Intent(MainActivity.this, SplashScreenActivity.class);
         startActivity(splashScreenIntent);
+        MainActivity.this.finish();
     }
 
     // Phương thức khởi chạy dashboard screen
