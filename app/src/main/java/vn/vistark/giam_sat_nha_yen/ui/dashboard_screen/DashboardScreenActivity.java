@@ -1,7 +1,9 @@
 package vn.vistark.giam_sat_nha_yen.ui.dashboard_screen;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
@@ -27,6 +29,7 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 import vn.vistark.giam_sat_nha_yen.R;
+import vn.vistark.giam_sat_nha_yen.data.arduino_community.ArduinoCommunity;
 import vn.vistark.giam_sat_nha_yen.ui.BaseAppCompatActivity;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_dialog.TimerDialog;
 import vn.vistark.giam_sat_nha_yen.utils.ScreenUtils;
@@ -66,6 +69,7 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
         initEvents();
         loadTimerList();
         initCamera();
+        ArduinoCommunity.asyncCommunity(this);
     }
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -142,18 +146,20 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
 
     public void updateHumidityView(final String humidity) {
         tvHumidity.post(new Runnable() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void run() {
-                tvHumidity.setText(humidity);
+                tvHumidity.setText(humidity + "%");
             }
         });
     }
 
     public void updateTemperature(final String temperature) {
         tvTemperature.post(new Runnable() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void run() {
-                tvTemperature.setText(temperature);
+                tvTemperature.setText(temperature + "°C");
             }
         });
     }
@@ -236,15 +242,9 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        mRgba = inputFrame.rgba();
-//        Core.flip(mRgba, mRgba, -1);
-
-        Bitmap bmp = null;
-//        Mat tmp = new Mat(mRgba.height(), mRgba.width(), CvType.CV_8UC4, new Scalar(4));
         try {
-//            Imgproc.cvtColor(mRgba, tmp, Imgproc.COLOR_RGB2BGRA);
-//            bmp = Bitmap.createBitmap(tmp.cols(), tmp.rows(), Bitmap.Config.ARGB_8888);
-            bmp = Bitmap.createBitmap(mRgba.cols(), mRgba.rows(), Bitmap.Config.ARGB_8888);
+            mRgba = inputFrame.rgba();
+            Bitmap bmp = Bitmap.createBitmap(mRgba.cols(), mRgba.rows(), Bitmap.Config.ARGB_8888);
             Utils.matToBitmap(mRgba, bmp);
             final Bitmap finalBmp = bmp;
             ivImageCaptured.post(new Runnable() {
@@ -253,8 +253,9 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
                     ivImageCaptured.setImageBitmap(finalBmp);
                 }
             });
+            SystemClock.sleep(300);
         } catch (CvException e) {
-            Log.d("Exception", e.getMessage());
+            //e.printStackTrace();
         }
         return mRgba; // This function must return
     }

@@ -37,6 +37,32 @@ public final class CommonUtils {
         return progressDialog;
     }
 
+    public static ProgressDialog showNoInternetDialog(Context context) {
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.show();
+        if (progressDialog.getWindow() != null) {
+            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        progressDialog.setContentView(R.layout.no_internet_dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        return progressDialog;
+    }
+
+    public static ProgressDialog showNoUsbDialog(Context context) {
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.show();
+        if (progressDialog.getWindow() != null) {
+            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        progressDialog.setContentView(R.layout.no_usb_dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        return progressDialog;
+    }
+
     @SuppressLint("HardwareIds")
     public static String getDeviceId(Context context) {
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);

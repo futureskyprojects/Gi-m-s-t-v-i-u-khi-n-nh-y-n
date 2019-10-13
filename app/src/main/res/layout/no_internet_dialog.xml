@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent">
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:layout_margin="30dp"
+        android:layout_centerInParent="true"
+        android:padding="15dp"
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.ChasingDots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:SpinKit_Color="#7ed6df" />
+    <TextView
+        android:shadowColor="@android:color/background_dark"
+        android:shadowDx="1"
+        android:shadowDy="2"
+        android:shadowRadius="3"
+        android:textColor="#7ed6df"
+        android:textSize="17sp"
+        android:textAlignment="center"
+        android:text="Vui lòng kiểm tra kết nối mạng"
+        android:layout_below="@id/spin_kit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

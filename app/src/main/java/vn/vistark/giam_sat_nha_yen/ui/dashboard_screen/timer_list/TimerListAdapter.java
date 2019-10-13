@@ -26,8 +26,8 @@ import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.timerRef;
 public class TimerListAdapter extends RecyclerView.Adapter<TimerListViewHolder> {
     private List<TimerItem> timerItems;
 
-    TimerListAdapter(List<TimerItem> timerItems) {
-        this.timerItems = timerItems;
+    TimerListAdapter() {
+        this.timerItems = TimerList.timerItems;
     }
 
     @NonNull
@@ -97,7 +97,8 @@ public class TimerListAdapter extends RecyclerView.Adapter<TimerListViewHolder> 
             public void onClick(SweetAlertDialog sweetAlertDialog) {
                 TimerItem timerItem = timerItems.get(position);
                 timerRef.child(timerItem.getId() + "").removeValue();
-                timerItems.remove(timerItem);
+
+                TimerList.removeRemoveAndRefresh(timerItem.getId());
                 notifyDataSetChanged();
                 if (timerItems.indexOf(timerItem) < 0) {
                     Toasty.success(context, "Đã xóa").show();

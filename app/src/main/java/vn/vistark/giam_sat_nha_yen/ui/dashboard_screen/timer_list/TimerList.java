@@ -1,10 +1,12 @@
 package vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_list;
 
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,14 +17,15 @@ import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.utils.TimeUtils;
 
 public class TimerList {
+    public final static String TAG = TimerList.class.getSimpleName();
+
     private RecyclerView mTimerList;
     private TimerListAdapter mTimerListApdater;
-    private List<TimerItem> timerItems;
+    public static List<TimerItem> timerItems;
 
-    public TimerList(RecyclerView timerList, List<TimerItem> timerItems) {
+    public TimerList(RecyclerView timerList) {
         this.mTimerList = timerList;
-        this.timerItems = timerItems;
-        mTimerListApdater = new TimerListAdapter(timerItems);
+        mTimerListApdater = new TimerListAdapter();
 
         // Thiết lập danh sách theo chiều dọc
         LinearLayoutManager layoutManager = new LinearLayoutManager(mTimerList.getContext());
@@ -36,8 +39,8 @@ public class TimerList {
     }
 
     public void RefreshData(List<TimerItem> timerItems) {
-        this.timerItems.clear();
-        this.timerItems = timerItems;
+        TimerList.timerItems.clear();
+        TimerList.timerItems = timerItems;
     }
 
     public RecyclerView getmTimerList() {
@@ -61,7 +64,7 @@ public class TimerList {
     }
 
     public void setTimerItems(List<TimerItem> timerItems) {
-        this.timerItems = timerItems;
+        TimerList.timerItems = timerItems;
     }
 
     public void notifyDataChanged() {
@@ -78,34 +81,43 @@ public class TimerList {
             public void run() {
                 checkStateUpdateAndSendData();
             }
-        }, 1000, 1000);
+        }, 5000, 5000);
     }
 
     private void checkStateUpdateAndSendData() {
-        if (timerItems == null || mTimerListApdater == null)
+        if (TimerList.timerItems == null || mTimerListApdater == null)
             return;
         // Lặp trong danh sách các cổng
-        for (int i = 0; i < timerItems.size(); i++) {
+        for (int i = 0; i < TimerList.timerItems.size(); i++) {
             // Nếu timer này đang được bật nguồn
-            if (timerItems.get(i).isPower()) {
+            if (TimerList.timerItems.get(i).isPower()) {
                 // Tiến hành kiểm tra xem nó có còn trong khung giờ không
-                timerItems.get(i).setState(
-                        TimeUtils.isInTimer(timerItems.get(i).getStart(), timerItems.get(i).getEnd())
-                );
-                notifyDataChanged();
-                FirebaseConfig.updateData(timerItems.get(i)); // -> Tự động sẽ được cập nhật
+                if (TimeUtils.isInTimer(TimerList.timerItems.get(i).getStart(), TimerList.timerItems.get(i).getEnd())) {
+                    TimerList.timerItems.get(i).setState(true);
+                    Log.d(TAG, "checkStateUpdateAndSendData: Đang trong khung giờ.");
+                } else {
+                    TimerList.timerItems.get(i).setState(false);
+                    Log.d(TAG, "checkStateUpdateAndSendData: Đang ngoài khung giờ.");
+                }
+                this.notifyDataChanged();
+                FirebaseConfig.updateData(TimerList.timerItems.get(i)); // -> Tự động sẽ được cập nhật
                 // Tiến hành gửi thông tin xuống arduino
-                ArduinoCommunity.sendCommand(timerItems.get(i).getPort(), timerItems.get(i).isState());
+                ArduinoCommunity.sendCommand(TimerList.timerItems.get(i).getPort(), TimerList.timerItems.get(i).isState());
+            } else {
+                TimerList.timerItems.get(i).setState(false);
             }
         }
     }
 
-    public void removeTimerItemById(String id) {
-        for (TimerItem timerItem : timerItems) {
-            if ((timerItem.getId() + "").equals(id)) {
-                timerItems.remove(timerItem);
-                notifyDataChanged();
+    public static void removeRemoveAndRefresh(long timerItemId) {
+        List<TimerItem> timerItems = new ArrayList<>();
+        if (TimerList.timerItems != null) {
+            for (int i = 0; i < TimerList.timerItems.size(); i++) {
+                if (TimerList.timerItems.get(i).getId() != timerItemId)
+                    timerItems.add(TimerList.timerItems.get(i));
             }
+            TimerList.timerItems.clear();
         }
+        TimerList.timerItems.addAll(timerItems);
     }
 }

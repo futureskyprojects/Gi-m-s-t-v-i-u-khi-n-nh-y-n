@@ -22,6 +22,7 @@ public class TimerDialog {
             alertDialog.dismiss();
         TimerDialogBuilder builder = new TimerDialogBuilder(mContext);
         builder.changeToAddLayout(); // Chuyển thành layout thêm
+        builder.setSelectedPort("A");
         initAddEvents(builder);
         builder.setLabel(builder.defaultString + builder.getSelectedPort());
         initSubmitAddButton(builder); // Xử lý khi nhấn nút thêm

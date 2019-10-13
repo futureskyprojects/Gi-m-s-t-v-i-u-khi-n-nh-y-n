@@ -33,31 +33,72 @@ class TimerListViewHolder extends RecyclerView.ViewHolder {
         rlTimerItemRoot = v.findViewById(R.id.timerItemRoot);
     }
 
-    void updateTimerItemIdView(String id) {
+    void updateTimerItemIdView(final String id) {
+//        tvTimerItemId.post(new Runnable() {
+//            @Override
+//            public void run() {
+//            }
+//        });
         tvTimerItemId.setText(id);
     }
 
-    void updateTimerItemLabelView(String label) {
+    void updateTimerItemLabelView(final String label) {
+//        tvTimerItemLabel.post(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
         tvTimerItemLabel.setText(label);
     }
 
-    void updateTimerItemStartView(String start) {
+    void updateTimerItemStartView(final String start) {
+//        tvTimerItemStart.post(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
         tvTimerItemStart.setText(start);
     }
 
-    void updateTimerItemEndView(String end) {
+    void updateTimerItemEndView(final String end) {
+//        tvTimerItemEnd.post(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
         tvTimerItemEnd.setText(end);
     }
 
-    void updateTimerSwitchCompatView(boolean state) {
+    void updateTimerSwitchCompatView(final boolean state) {
+//        scTimerSwitchCompat.post(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
         scTimerSwitchCompat.setChecked(state);
     }
 
     void toggleTimerSwitchCompatView() {
+//        scTimerSwitchCompat.post(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
         scTimerSwitchCompat.toggle();
     }
 
-    void updateTimerStateView(boolean state) {
+    void updateTimerStateView(final boolean state) {
+//        tvTimerItemId.post(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        });
         if (state) {
             tvTimerItemId.setBackgroundResource(R.drawable.quepal);
         } else {
