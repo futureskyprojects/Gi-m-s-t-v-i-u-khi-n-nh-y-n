@@ -22,6 +22,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import vn.vistark.giam_sat_nha_yen.data.db.TimerItemDb.TimerItemHelper;
 import vn.vistark.giam_sat_nha_yen.data.db.modal.TimerItem;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_list.TimerList;
+import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.video_transfer.VideoTransfer;
 import vn.vistark.giam_sat_nha_yen.utils.CommonUtils;
 import vn.vistark.giam_sat_nha_yen.utils.NetworkUtils;
 import vn.vistark.giam_sat_nha_yen.utils.TimeUtils;
@@ -84,6 +85,7 @@ public class DashboardScreenPresenter {
                         if (NetworkUtils.isNetworkConnected(mContext)) {
                             if (noInternetDialog != null && noInternetDialog.isShowing()) {
                                 noInternetDialog.dismiss();
+                                VideoTransfer.init();
                             }
                         } else {
                             if (noInternetDialog != null && noInternetDialog.isShowing()) {

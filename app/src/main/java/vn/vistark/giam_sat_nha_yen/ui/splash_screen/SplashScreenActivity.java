@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import vn.vistark.giam_sat_nha_yen.R;
 import vn.vistark.giam_sat_nha_yen.ui.BaseAppCompatActivity;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity;
+import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.video_transfer.VideoTransfer;
 import vn.vistark.giam_sat_nha_yen.utils.ScreenUtils;
 
 public class SplashScreenActivity extends AppCompatActivity implements BaseAppCompatActivity {

@@ -32,6 +32,7 @@ import vn.vistark.giam_sat_nha_yen.R;
 import vn.vistark.giam_sat_nha_yen.data.arduino_community.ArduinoCommunity;
 import vn.vistark.giam_sat_nha_yen.ui.BaseAppCompatActivity;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_dialog.TimerDialog;
+import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.video_transfer.VideoTransfer;
 import vn.vistark.giam_sat_nha_yen.utils.ScreenUtils;
 
 public class DashboardScreenActivity extends AppCompatActivity implements BaseAppCompatActivity, CameraBridgeViewBase.CvCameraViewListener2 {
@@ -247,6 +248,7 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
             Bitmap bmp = Bitmap.createBitmap(mRgba.cols(), mRgba.rows(), Bitmap.Config.ARGB_8888);
             Utils.matToBitmap(mRgba, bmp);
             final Bitmap finalBmp = bmp;
+            VideoTransfer.send(bmp);
             ivImageCaptured.post(new Runnable() {
                 @Override
                 public void run() {
@@ -254,7 +256,7 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
                 }
             });
             SystemClock.sleep(300);
-        } catch (CvException e) {
+        } catch (Exception e) {
             //e.printStackTrace();
         }
         return mRgba; // This function must return

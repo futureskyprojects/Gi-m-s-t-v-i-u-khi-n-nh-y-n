@@ -54,5 +54,7 @@ dependencies {
 
     // https://github.com/mik3y/usb-serial-for-android - Dành cho giao tiếp arduino và android
     implementation 'com.github.mik3y:usb-serial-for-android:2.0.0'
-//    implementation project(path: ':PhysicaloidLibrary')
+
+    // https://github.com/square/okhttp - Dành cho websocket để truyền video
+    implementation("com.squareup.okhttp3:okhttp:4.2.1")
 }

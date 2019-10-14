@@ -4,6 +4,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import vn.vistark.giam_sat_nha_yen.data.arduino_community.ArduinoCommunity;
+import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.video_transfer.VideoTransfer;
+import vn.vistark.giam_sat_nha_yen.utils.NetworkUtils;
 
 class SplashScreenPresenter {
     private final static String TAG = SplashScreenPresenter.class.getSimpleName();
@@ -18,12 +20,17 @@ class SplashScreenPresenter {
 
     private void initStarting() {
         mContext.updateInitStateTextShowView("Đang khởi động...");
-        new Timer().schedule(new TimerTask() {
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                initCommunity();
+                if (NetworkUtils.isNetworkConnected(mContext)) {
+                    VideoTransfer.attach();
+                    initCommunity();
+                    timer.cancel();
+                }
             }
-        }, 1000);
+        }, 1000, 1000);
     }
 
     private void initCommunity() {

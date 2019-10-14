@@ -11,11 +11,14 @@ import java.util.UUID;
 import vn.vistark.giam_sat_nha_yen.Config;
 import vn.vistark.giam_sat_nha_yen.data.db.modal.TimerItem;
 
+
 public class FirebaseConfig {
     private final static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public final static DatabaseReference myRef = database.getReference(Config.DEVEICE_NAME);
     public final static DatabaseReference timerRef = myRef.child("Timer");
     public final static DatabaseReference infomationRef = myRef.child("Infomation");
+    public final static DatabaseReference configRef = myRef.child("Config");
+    public final static DatabaseReference wsRef = configRef.child("ws");
 
     public final static String KEY_PORT = "port";
     public final static String KEY_LABEL = "label";
