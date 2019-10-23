@@ -828,6 +828,7 @@ drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable line_break
 drawable logo_ntu
+drawable menu
 drawable moonlit_asteroid
 drawable notification_action_background
 drawable notification_bg
@@ -1017,6 +1018,10 @@ id ifRoom
 id image
 id imageCaptureFrame
 id imageCaptured
+id imageCapturedS1
+id imageCapturedS2
+id imageCapturedS3
+id imageCapturedS4
 id info
 id initStateTextShow
 id invisible
@@ -1033,6 +1038,8 @@ id mask_left
 id mask_right
 id message
 id middle
+id multiCamLayout
+id multiCameraButton
 id multiply
 id neutral_button
 id never
@@ -1052,7 +1059,6 @@ id progress_circular
 id progress_dialog
 id progress_horizontal
 id radio
-id refreshCameraBtn
 id right
 id right_icon
 id right_side

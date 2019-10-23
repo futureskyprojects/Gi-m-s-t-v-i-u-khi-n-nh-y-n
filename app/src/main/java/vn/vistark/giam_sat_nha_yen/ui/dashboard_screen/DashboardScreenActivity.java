@@ -23,6 +23,7 @@ import org.opencv.android.Utils;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
+import es.dmoral.toasty.Toasty;
 import vn.vistark.giam_sat_nha_yen.R;
 import vn.vistark.giam_sat_nha_yen.data.arduino_community.ArduinoCommunity;
 import vn.vistark.giam_sat_nha_yen.ui.BaseAppCompatActivity;
@@ -49,6 +50,13 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
     private TextView tvHumidity;
     private TextView tvTemperature;
     private TextView tvTimerListEmptyNotify;
+
+    private LinearLayout lnMultiCameraButton;
+    private LinearLayout lnMultiCamLayout;
+    private ImageView ivImageCapturedS1;
+    private ImageView ivImageCapturedS2;
+    private ImageView ivImageCapturedS3;
+    private ImageView ivImageCapturedS4;
 
     // Loads camera view of OpenCV for us to use. This lets us see using OpenCV
     private CameraBridgeViewBase mOpenCvCameraView;
@@ -80,7 +88,7 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
         public void onManagerConnected(int status) {
             if (status == LoaderCallbackInterface.SUCCESS) {
                 mOpenCvCameraView.enableView();
-                ivImageCaptured.setVisibility(View.VISIBLE);
+                showMultiCamera();
             } else {
                 super.onManagerConnected(status);
             }
@@ -108,6 +116,34 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
         tvHumidity = findViewById(R.id.humidity);
         tvTemperature = findViewById(R.id.temperature);
         tvTimerListEmptyNotify = findViewById(R.id.timerListEmptyNotify);
+        lnMultiCameraButton = findViewById(R.id.multiCameraButton);
+        lnMultiCamLayout = findViewById(R.id.multiCamLayout);
+        ivImageCapturedS1 = findViewById(R.id.imageCapturedS1);
+        ivImageCapturedS2 = findViewById(R.id.imageCapturedS2);
+        ivImageCapturedS3 = findViewById(R.id.imageCapturedS3);
+        ivImageCapturedS4 = findViewById(R.id.imageCapturedS4);
+    }
+
+    public void showMultiCamera() {
+        lnMultiCameraButton.post(new Runnable() {
+            @Override
+            public void run() {
+                lnMultiCameraButton.setVisibility(View.GONE);
+                ivImageCaptured.setVisibility(View.GONE);
+                lnMultiCamLayout.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    public void chooseShowCam1() {
+        ivImageCapturedS1.post(new Runnable() {
+            @Override
+            public void run() {
+                lnMultiCameraButton.setVisibility(View.VISIBLE);
+                ivImageCaptured.setVisibility(View.VISIBLE);
+                lnMultiCamLayout.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
@@ -132,6 +168,38 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
                 TimerDialog.showAdd(DashboardScreenActivity.this);
             }
         });
+
+        // Bắt sự kiện khi nhấn vào nút nhiều camera
+        lnMultiCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMultiCamera();
+            }
+        });
+
+        // Sự kiện khi nhấn vào 1 khung hình của cam bất kỳ trong chế độ xem nhiều camera
+        // Nhấn màn hình 1
+        ivImageCapturedS1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chooseShowCam1();
+            }
+        });
+        // Nhấn màn hình 2,3,4
+        ImageView[] ivs = {ivImageCapturedS2, ivImageCapturedS3, ivImageCapturedS4};
+        for (final ImageView v : ivs) {
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    v.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toasty.info(DashboardScreenActivity.this, "Không nhận được tín hiệu từ camera này!", Toasty.LENGTH_SHORT, false).show();
+                        }
+                    });
+                }
+            });
+        }
     }
 
 
@@ -251,12 +319,23 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
             Utils.matToBitmap(mRgba, bmp);
             final Bitmap finalBmp = bmp;
             VideoTransfer.send(bmp);
-            ivImageCaptured.post(new Runnable() {
-                @Override
-                public void run() {
-                    ivImageCaptured.setImageBitmap(finalBmp);
-                }
-            });
+            if (ivImageCaptured.getVisibility() == View.VISIBLE) {
+                // Nếu đang hiển thị khung nhìn cho 1 cam duy nhất
+                ivImageCaptured.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ivImageCaptured.setImageBitmap(finalBmp);
+                    }
+                });
+            } else if (ivImageCapturedS1.getVisibility() == View.VISIBLE) {
+                // Nếu có cho phép hiển thị cho cam 1 trong 4 cam
+                ivImageCapturedS1.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ivImageCapturedS1.setImageBitmap(finalBmp);
+                    }
+                });
+            }
         } catch (Exception e) {
             //e.printStackTrace();
         }

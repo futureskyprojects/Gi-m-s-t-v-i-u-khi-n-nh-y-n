@@ -179,11 +179,11 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/refreshCameraBtn"
+                    android:id="@+id/multiCameraButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="7dp"
                     android:layout_marginEnd="15dp"
                     android:background="@drawable/quepal"
                     android:clickable="true"
@@ -194,18 +194,8 @@
                     <ImageView
                         android:layout_width="16dp"
                         android:layout_height="16dp"
-                        android:src="@drawable/reload"
+                        android:src="@drawable/menu"
                         android:tint="@android:color/white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:paddingStart="5dp"
-                        android:text="Reset camera"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -257,6 +247,92 @@
                         android:layout_marginRight="15dp"
                         android:background="#000"
                         android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/multiCamLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#899"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:weightSum="2">
+                        <!-- Khung hiển thị cam - hàng 1 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:id="@+id/imageCapturedS1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginEnd="7.5dp"
+                                    android:layout_marginBottom="7.5dp"
+                                    android:background="#000" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:id="@+id/imageCapturedS2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="7.5dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:layout_marginBottom="7.5dp"
+                                    android:background="#000" />
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <!-- Khung hiển thị cam - hàng 2 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:id="@+id/imageCapturedS3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="15dp"
+                                    android:layout_marginEnd="7.5dp"
+                                    android:layout_marginBottom="7.5dp"
+                                    android:background="#000" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:id="@+id/imageCapturedS4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="7.5dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:layout_marginBottom="7.5dp"
+                                    android:background="#000" />
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
                 </RelativeLayout>
 
                 <LinearLayout
