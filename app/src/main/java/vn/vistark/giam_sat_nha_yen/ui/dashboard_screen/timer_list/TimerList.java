@@ -1,7 +1,6 @@
 package vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_list;
 
 import android.util.Log;
-import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +14,13 @@ import vn.vistark.giam_sat_nha_yen.data.arduino_community.ArduinoCommunity;
 import vn.vistark.giam_sat_nha_yen.data.db.modal.TimerItem;
 import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.utils.TimeUtils;
+
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
 
 public class TimerList {
     public final static String TAG = TimerList.class.getSimpleName();
@@ -81,7 +87,7 @@ public class TimerList {
             public void run() {
                 checkStateUpdateAndSendData();
             }
-        }, 5000, 5000);
+        }, 1000, 2500);
     }
 
     private void checkStateUpdateAndSendData() {
@@ -94,18 +100,17 @@ public class TimerList {
                 // Tiến hành kiểm tra xem nó có còn trong khung giờ không
                 if (TimeUtils.isInTimer(TimerList.timerItems.get(i).getStart(), TimerList.timerItems.get(i).getEnd())) {
                     TimerList.timerItems.get(i).setState(true);
-                    Log.d(TAG, "checkStateUpdateAndSendData: Đang trong khung giờ.");
+//                    Log.w(TAG, "checkStateUpdateAndSendData: Đang trong khung giờ.");
                 } else {
                     TimerList.timerItems.get(i).setState(false);
-                    Log.d(TAG, "checkStateUpdateAndSendData: Đang ngoài khung giờ.");
+//                    Log.e(TAG, "checkStateUpdateAndSendData: Đang ngoài khung giờ.");
                 }
-                this.notifyDataChanged();
-                FirebaseConfig.updateData(TimerList.timerItems.get(i)); // -> Tự động sẽ được cập nhật
-                // Tiến hành gửi thông tin xuống arduino
-                ArduinoCommunity.sendCommand(TimerList.timerItems.get(i).getPort(), TimerList.timerItems.get(i).isState());
             } else {
                 TimerList.timerItems.get(i).setState(false);
             }
+            FirebaseConfig.updateData(TimerList.timerItems.get(i)); // -> Tự động sẽ được cập nhật
+            // Tiến hành gửi thông tin xuống arduino
+            ArduinoCommunity.sendCommand(TimerList.timerItems.get(i).getPort(), TimerList.timerItems.get(i).isState());
         }
     }
 
@@ -118,6 +123,7 @@ public class TimerList {
             }
             TimerList.timerItems.clear();
         }
-        TimerList.timerItems.addAll(timerItems);
+        if (TimerList.timerItems != null)
+            TimerList.timerItems.addAll(timerItems);
     }
 }

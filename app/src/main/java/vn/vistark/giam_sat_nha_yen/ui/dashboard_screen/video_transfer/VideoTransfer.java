@@ -2,7 +2,6 @@ package vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.video_transfer;
 
 
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -16,11 +15,15 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.WebSocket;
 import okio.ByteString;
-import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 
-import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.configRef;
-import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.timerRef;
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.wsRef;
+
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
 
 public class VideoTransfer {
     public final static String TAG = VideoTransfer.class.getSimpleName();
@@ -38,7 +41,6 @@ public class VideoTransfer {
                     String urlStr = dataSnapshot.getValue().toString();
                     if (gottedUrl == null || gottedUrl.isEmpty()) {
                         gottedUrl = urlStr;
-                        Log.w(TAG, "Cấu hình cho ws là: " + urlStr + "\n-----------------------");
                         init();
                     }
                 }
@@ -62,9 +64,8 @@ public class VideoTransfer {
     public static boolean send(Bitmap bitmap) {
         if (listener.isConnected) {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 40, stream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
             byte[] byteArray = stream.toByteArray();
-//            bitmap.recycle();
             ByteString byteString = ByteString.of(byteArray, 0, byteArray.length);
             return ws.send(byteString);
         } else {

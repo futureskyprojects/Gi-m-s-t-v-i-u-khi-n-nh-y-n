@@ -9,6 +9,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,17 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
-import org.opencv.core.Core;
-import org.opencv.core.CvException;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
 
 import vn.vistark.giam_sat_nha_yen.R;
 import vn.vistark.giam_sat_nha_yen.data.arduino_community.ArduinoCommunity;
@@ -34,6 +29,13 @@ import vn.vistark.giam_sat_nha_yen.ui.BaseAppCompatActivity;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_dialog.TimerDialog;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.video_transfer.VideoTransfer;
 import vn.vistark.giam_sat_nha_yen.utils.ScreenUtils;
+
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
 
 public class DashboardScreenActivity extends AppCompatActivity implements BaseAppCompatActivity, CameraBridgeViewBase.CvCameraViewListener2 {
     private final static String TAG = DashboardScreenActivity.class.getSimpleName();
@@ -77,7 +79,6 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
         @Override
         public void onManagerConnected(int status) {
             if (status == LoaderCallbackInterface.SUCCESS) {
-                Log.i(TAG, "OpenCV loaded successfully");
                 mOpenCvCameraView.enableView();
                 ivImageCaptured.setVisibility(View.VISIBLE);
             } else {
@@ -200,16 +201,15 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
     @Override
     protected void onStop() {
         super.onStop();
+        Log.e(TAG, "onStop: Đã dừng lại");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         if (!OpenCVLoader.initDebug()) {
-            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION, this, mLoaderCallback);
         } else {
-            Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
     }
@@ -227,6 +227,7 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
         super.onDestroy();
         if (mOpenCvCameraView != null)
             mOpenCvCameraView.disableView();
+        Log.e(TAG, "onDestroy: Đã kết thúc.");
     }
 
     @Override
@@ -244,6 +245,7 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         try {
+            long s = System.currentTimeMillis();
             mRgba = inputFrame.rgba();
             Bitmap bmp = Bitmap.createBitmap(mRgba.cols(), mRgba.rows(), Bitmap.Config.ARGB_8888);
             Utils.matToBitmap(mRgba, bmp);
@@ -255,10 +257,11 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
                     ivImageCaptured.setImageBitmap(finalBmp);
                 }
             });
-            SystemClock.sleep(300);
         } catch (Exception e) {
             //e.printStackTrace();
         }
         return mRgba; // This function must return
     }
+
+
 }

@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -20,8 +19,14 @@ import vn.vistark.giam_sat_nha_yen.data.db.modal.TimerItem;
 import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_dialog.TimerDialog;
 
-import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.myRef;
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.timerRef;
+
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
 
 public class TimerListAdapter extends RecyclerView.Adapter<TimerListViewHolder> {
     private List<TimerItem> timerItems;
@@ -95,15 +100,19 @@ public class TimerListAdapter extends RecyclerView.Adapter<TimerListViewHolder> 
         sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
-                TimerItem timerItem = timerItems.get(position);
-                timerRef.child(timerItem.getId() + "").removeValue();
+                try {
+                    TimerItem timerItem = timerItems.get(position);
+                    timerRef.child(timerItem.getId() + "").removeValue();
 
-                TimerList.removeRemoveAndRefresh(timerItem.getId());
-                notifyDataSetChanged();
-                if (timerItems.indexOf(timerItem) < 0) {
-                    Toasty.success(context, "Đã xóa").show();
+                    TimerList.removeRemoveAndRefresh(timerItem.getId());
+                    notifyDataSetChanged();
+                    if (timerItems.indexOf(timerItem) < 0) {
+                        Toasty.success(context, "Đã xóa").show();
+                    }
+                    sweetAlertDialog.dismiss();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                sweetAlertDialog.dismiss();
             }
         });
 

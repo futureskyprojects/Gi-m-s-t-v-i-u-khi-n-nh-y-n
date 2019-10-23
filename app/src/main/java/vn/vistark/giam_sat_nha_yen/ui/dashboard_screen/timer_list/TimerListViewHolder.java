@@ -11,6 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import vn.vistark.giam_sat_nha_yen.R;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity;
 
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
+
 class TimerListViewHolder extends RecyclerView.ViewHolder {
     private TextView tvTimerItemId;
     private TextView tvTimerItemLabel;
@@ -34,76 +41,70 @@ class TimerListViewHolder extends RecyclerView.ViewHolder {
     }
 
     void updateTimerItemIdView(final String id) {
-//        tvTimerItemId.post(new Runnable() {
-//            @Override
-//            public void run() {
-//            }
-//        });
-        tvTimerItemId.setText(id);
+        tvTimerItemId.post(new Runnable() {
+            @Override
+            public void run() {
+                tvTimerItemId.setText(id);
+            }
+        });
     }
 
     void updateTimerItemLabelView(final String label) {
-//        tvTimerItemLabel.post(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        });
-        tvTimerItemLabel.setText(label);
+        tvTimerItemLabel.post(new Runnable() {
+            @Override
+            public void run() {
+                tvTimerItemLabel.setText(label);
+            }
+        });
     }
 
     void updateTimerItemStartView(final String start) {
-//        tvTimerItemStart.post(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        });
-        tvTimerItemStart.setText(start);
+        tvTimerItemStart.post(new Runnable() {
+            @Override
+            public void run() {
+                tvTimerItemStart.setText(start);
+            }
+        });
     }
 
     void updateTimerItemEndView(final String end) {
-//        tvTimerItemEnd.post(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        });
-        tvTimerItemEnd.setText(end);
+        tvTimerItemEnd.post(new Runnable() {
+            @Override
+            public void run() {
+                tvTimerItemEnd.setText(end);
+            }
+        });
     }
 
     void updateTimerSwitchCompatView(final boolean state) {
-//        scTimerSwitchCompat.post(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        });
-        scTimerSwitchCompat.setChecked(state);
+        scTimerSwitchCompat.post(new Runnable() {
+            @Override
+            public void run() {
+                scTimerSwitchCompat.setChecked(state);
+            }
+        });
     }
 
     void toggleTimerSwitchCompatView() {
-//        scTimerSwitchCompat.post(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        });
-        scTimerSwitchCompat.toggle();
+        scTimerSwitchCompat.post(new Runnable() {
+            @Override
+            public void run() {
+                scTimerSwitchCompat.toggle();
+            }
+        });
     }
 
     void updateTimerStateView(final boolean state) {
-//        tvTimerItemId.post(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        });
-        if (state) {
-            tvTimerItemId.setBackgroundResource(R.drawable.quepal);
-        } else {
-            tvTimerItemId.setBackgroundResource(R.drawable.burning_orange);
-        }
+        tvTimerItemId.post(new Runnable() {
+            @Override
+            public void run() {
+                if (state) {
+                    tvTimerItemId.setBackgroundResource(R.drawable.quepal);
+                } else {
+                    tvTimerItemId.setBackgroundResource(R.drawable.burning_orange);
+                }
+            }
+        });
     }
 
     void holderUpdateEmptyNotify(int size) {

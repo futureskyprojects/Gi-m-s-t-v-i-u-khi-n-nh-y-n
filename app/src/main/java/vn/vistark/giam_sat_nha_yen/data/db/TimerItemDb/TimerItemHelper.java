@@ -12,6 +12,13 @@ import java.util.List;
 
 import vn.vistark.giam_sat_nha_yen.data.db.modal.TimerItem;
 
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
+
 public class TimerItemHelper extends SQLiteOpenHelper {
     private final static String TAG = TimerItemHelper.class.getSimpleName();
     private final static String DATABASE_NAME = "timer_item";

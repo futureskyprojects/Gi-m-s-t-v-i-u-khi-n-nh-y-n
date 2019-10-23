@@ -1,10 +1,8 @@
 package vn.vistark.giam_sat_nha_yen.data.arduino_community;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.hardware.usb.UsbManager;
-import android.os.SystemClock;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +21,13 @@ import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity;
 import vn.vistark.giam_sat_nha_yen.utils.CommonUtils;
 
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
+
 public class ArduinoCommunity {
     public final static String TAG = ArduinoCommunity.class.getSimpleName();
 
@@ -30,14 +35,10 @@ public class ArduinoCommunity {
     public static List<UsbSerialDriver> availableDrivers;
     public static Thread communityThread;
 
-    private static ProgressDialog noUsbFound;
-
     public static boolean init(AppCompatActivity mContext) {
         manager = (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
         availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
         if (availableDrivers.isEmpty()) {
-            Log.e(TAG, "Không tìm thấy bất cứ thiết bị nào được kết nối!");
-            Toasty.error(mContext, "Không tìm được thiết bị ngoại vi nào.").show();
             return false;
         } else {
             // Nếu mọi thứ đều ổn, lấy kết nối đầu tiên
@@ -46,18 +47,39 @@ public class ArduinoCommunity {
         }
     }
 
-    public static boolean openConnection(Context mContext) {
+    public static boolean openConnection(final AppCompatActivity mContext) {
         CommunityConfig.defaultUsbDeviceConnection = manager.openDevice(CommunityConfig.defaultUsbSerialDriver.getDevice());
         if (CommunityConfig.defaultUsbDeviceConnection == null) {
             Log.e(TAG, "Không thể mở kết nối đến thiết bị ngoại vi.");
-            Toasty.error(mContext, "Không thể thiết lập kết nối đến thiết bị ngoại vi.").show();
+            mContext.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toasty.warning(mContext, "Vui lòng ngắt kết nối với thiết bị ngoại vi sau đó kết nối lại.", Toasty.LENGTH_SHORT, false).show();
+                }
+            });
             return false;
         } else {
             return openCommunity();
         }
     }
 
+    public static void closeCommunity() {
+        try {
+            if (communityThread != null) {
+                if (communityThread.isAlive() && !communityThread.isInterrupted()) {
+                    communityThread.interrupt();
+                }
+                communityThread = null;
+            }
+            if (CommunityConfig.defaultUsbSerialPort != null)
+                CommunityConfig.defaultUsbSerialPort.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static boolean openCommunity() {
+        closeCommunity();
         CommunityConfig.defaultUsbSerialPort = CommunityConfig.defaultUsbSerialDriver.getPorts().get(0);
         try {
             CommunityConfig.defaultUsbSerialPort.open(CommunityConfig.defaultUsbDeviceConnection);
@@ -75,60 +97,45 @@ public class ArduinoCommunity {
         }
     }
 
-    public static void close() {
-        try {
-            CommunityConfig.defaultUsbSerialPort.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public static void openReadOrWrite(final DashboardScreenActivity mContext) {
+    private static void openReadOrWrite(final DashboardScreenActivity mContext) {
         try {
-            // Đọc
-            byte[] buffer = new byte[16];
-            int numBytesRead = 0;
-            try {
-                numBytesRead = CommunityConfig.defaultUsbSerialPort.read(buffer, 1000);
-            } catch (Exception e) {
-                mContext.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (noUsbFound == null) {
-                            noUsbFound = CommonUtils.showNoUsbDialog(mContext);
-                        }
-                        if (!noUsbFound.isShowing()) {
-                            noUsbFound.show();
-                        }
-                    }
-                });
-                init(mContext);
-            }
-            mContext.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (noUsbFound != null && noUsbFound.isShowing()) {
-                        noUsbFound.dismiss();
-                    }
+            while (true) {
+                // Đọc
+                byte[] buffer = new byte[16];
+                int numBytesRead = 0;
+                try {
+                    ////////////////// LỖI Ở ĐÂY
+                    numBytesRead = CommunityConfig.defaultUsbSerialPort.read(buffer, 1000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    //init(mContext);
                 }
-            });
-            String s = new String(buffer);
-            s = s.substring(0, numBytesRead);
-            extractInfo(s, mContext);
-            // Ghi
-            if (!CommunityConfig.buffer.isEmpty()) {
-                Log.i(TAG, "Đã gửi: " + CommunityConfig.buffer);
-                byte[] bytes = CommunityConfig.buffer.getBytes();
-                int numBytesWrite = CommunityConfig.defaultUsbSerialPort.write(bytes, 1000);
-                if (numBytesWrite >= bytes.length) {
-                    Log.i(TAG, "openReadOrWrite: Đã ghi thành công! (" + numBytesWrite + "/" + bytes.length + ")");
-                } else {
-                    Log.i(TAG, "openReadOrWrite: Ghi không thành công (" + numBytesWrite + "/" + bytes.length + ")");
+                String s = new String(buffer);
+                s = s.substring(0, numBytesRead);
+                extractInfo(s, mContext);
+                // Ghi
+                if (!CommunityConfig.buffer.isEmpty()) {
+                    Log.i(TAG, "Đã gửi: " + CommunityConfig.buffer);
+                    byte[] bytes = CommunityConfig.buffer.getBytes();
+                    int numBytesWrite = CommunityConfig.defaultUsbSerialPort.write(bytes, 1000);
+                    if (numBytesWrite >= bytes.length) {
+                        Log.i(TAG, "openReadOrWrite: Đã ghi thành công! (" + numBytesWrite + "/" + bytes.length + ")");
+                    } else {
+                        Log.i(TAG, "openReadOrWrite: Ghi không thành công (" + numBytesWrite + "/" + bytes.length + ")");
+                    }
+                    CommunityConfig.buffer = "";
                 }
-                CommunityConfig.buffer = "";
             }
         } catch (Exception e) {
             e.printStackTrace();
+            mContext.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toasty.warning(mContext, "Mất kết nối đến thiết bị ngoại vi. Tiến hành dừng chương trình.", Toasty.LENGTH_SHORT, false).show();
+                    mContext.finish();
+                }
+            });
         }
     }
 
@@ -140,6 +147,7 @@ public class ArduinoCommunity {
             if (gotted != null) {
                 String temperature = gotted.substring(1, 3);
                 String humidity = gotted.substring(3, 5);
+                Log.d(TAG, "Nhiệt độ " + temperature + " - Độ ẩm: " + humidity);
                 mContext.updateTemperature(temperature);
                 mContext.updateHumidityView(humidity);
                 FirebaseConfig.updateTemperatureAndHumidity(temperature, humidity);
@@ -148,21 +156,20 @@ public class ArduinoCommunity {
     }
 
     public static void asyncCommunity(final DashboardScreenActivity mContext) {
-        if (communityThread != null) {
-            communityThread = null;
-        }
-        communityThread = new Thread() {
-            @Override
-            public void run() {
-                while (true) {
+        if (communityThread == null) {
+            communityThread = new Thread() {
+                @Override
+                public void run() {
                     openReadOrWrite(mContext);
                 }
-            }
-        };
-        communityThread.start();
+            };
+            communityThread.start();
+        }
     }
 
     public static void sendCommand(String port, boolean state) {
+        if (CommunityConfig.buffer.length() > 512)
+            CommunityConfig.buffer = "";
         if (port.equals("A") && state)
             CommunityConfig.buffer += "1";
         else
@@ -180,5 +187,4 @@ public class ArduinoCommunity {
         else
             CommunityConfig.buffer += "6";
     }
-
 }

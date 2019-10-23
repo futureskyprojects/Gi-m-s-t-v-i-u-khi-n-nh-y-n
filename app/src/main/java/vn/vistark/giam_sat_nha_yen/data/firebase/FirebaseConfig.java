@@ -6,17 +6,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
-import java.util.UUID;
 
 import vn.vistark.giam_sat_nha_yen.Config;
 import vn.vistark.giam_sat_nha_yen.data.db.modal.TimerItem;
 
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
 
 public class FirebaseConfig {
     private final static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public final static DatabaseReference myRef = database.getReference(Config.DEVEICE_NAME);
     public final static DatabaseReference timerRef = myRef.child("Timer");
-    public final static DatabaseReference infomationRef = myRef.child("Infomation");
+    public final static DatabaseReference infomationRef = myRef.child("Information");
     public final static DatabaseReference configRef = myRef.child("Config");
     public final static DatabaseReference wsRef = configRef.child("ws");
 

@@ -1,13 +1,9 @@
 package vn.vistark.giam_sat_nha_yen.utils;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
-import android.util.Log;
 
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
-
-import es.dmoral.toasty.Toasty;
 
 public class TimeUtils {
     public final static String TAG = TimeUtils.class.getSimpleName();
@@ -62,12 +58,12 @@ public class TimeUtils {
             int currentMinutes = calendar.get(Calendar.MINUTE);
 
             // Tiến hành so sánh
-
-            if ((startHours <= currentHours && startMinutes <= currentMinutes) && (currentHours <= endHours && currentMinutes < endMinutes))
-            {
-                return true;
-            }
-
+            return !(
+                    (currentHours < startHours) ||
+                            ((currentHours == startHours) && (currentMinutes < startMinutes)) ||
+                            (currentHours > endHours) ||
+                            ((currentHours == endHours) && (currentMinutes > endMinutes))
+            );
         }
         return false;
     }

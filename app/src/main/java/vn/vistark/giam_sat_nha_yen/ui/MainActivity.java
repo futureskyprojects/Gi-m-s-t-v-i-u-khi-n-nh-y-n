@@ -1,29 +1,22 @@
+
 package vn.vistark.giam_sat_nha_yen.ui;
+
+import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.Intent;
-import android.hardware.usb.UsbDeviceConnection;
-import android.hardware.usb.UsbManager;
-import android.os.Bundle;
-import android.util.Log;
-
-import com.hoho.android.usbserial.driver.UsbSerialDriver;
-import com.hoho.android.usbserial.driver.UsbSerialPort;
-import com.hoho.android.usbserial.driver.UsbSerialProber;
-
-import org.opencv.android.OpenCVLoader;
-
-import java.io.IOException;
-import java.util.List;
-
 import vn.vistark.giam_sat_nha_yen.R;
-import vn.vistark.giam_sat_nha_yen.data.arduino_community.ArduinoCommunity;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity;
 import vn.vistark.giam_sat_nha_yen.ui.splash_screen.SplashScreenActivity;
 import vn.vistark.giam_sat_nha_yen.utils.ScreenUtils;
 
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = MainActivity.class.getSimpleName();
 

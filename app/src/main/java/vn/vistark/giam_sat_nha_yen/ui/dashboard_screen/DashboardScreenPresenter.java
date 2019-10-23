@@ -3,7 +3,6 @@ package vn.vistark.giam_sat_nha_yen.ui.dashboard_screen;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,7 +13,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -34,6 +32,13 @@ import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.KEY_POWER
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.KEY_START;
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.KEY_STATE;
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.timerRef;
+
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
 
 public class DashboardScreenPresenter {
     private final static String TAG = DashboardScreenPresenter.class.getSimpleName();
@@ -117,7 +122,12 @@ public class DashboardScreenPresenter {
                 sweetAlertDialog.dismiss();
             }
         });
-        exitConfirm.show();
+        //
+        try {
+            exitConfirm.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateOrReplaceTimerItem(TimerItem timerItem) {

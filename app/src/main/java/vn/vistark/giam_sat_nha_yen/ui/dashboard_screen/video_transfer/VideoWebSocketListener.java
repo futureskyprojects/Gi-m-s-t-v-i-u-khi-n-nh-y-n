@@ -7,7 +7,13 @@ import org.jetbrains.annotations.NotNull;
 import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
-import vn.vistark.giam_sat_nha_yen.Config;
+
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
 
 public class VideoWebSocketListener extends WebSocketListener {
     public final static String TAG = VideoWebSocketListener.class.getSimpleName();

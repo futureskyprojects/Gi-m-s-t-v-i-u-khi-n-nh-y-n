@@ -3,6 +3,15 @@ package vn.vistark.giam_sat_nha_yen.data.db.modal;
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.vistark.giam_sat_nha_yen.utils.TimeUtils;
+
+/**
+ * Project ĐK Nhà Yến
+ * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
+ * Organization: Vistark Team
+ * Email: dev.vistark@gmail.com
+ */
+
 public class TimerItem {
     private long id = -1;
     private String label = "";
@@ -35,8 +44,8 @@ public class TimerItem {
         this.port = port;
         this.power = power;
         this.state = state;
-        this.start = start;
-        this.end = end;
+        this.start = TimeUtils.timerToStandard(start);
+        this.end = TimeUtils.timerToStandard(end);
         this.detail = detail;
     }
 
@@ -46,8 +55,8 @@ public class TimerItem {
         this.port = port;
         this.power = Boolean.parseBoolean(power);
         this.state = Boolean.parseBoolean(state);
-        this.start = start;
-        this.end = end;
+        this.start = TimeUtils.timerToStandard(start);
+        this.end = TimeUtils.timerToStandard(end);
         this.detail = detail;
     }
 
@@ -100,19 +109,19 @@ public class TimerItem {
     }
 
     public String getStart() {
-        return start;
+        return TimeUtils.timerToStandard(start);
     }
 
     public void setStart(String start) {
-        this.start = start;
+        this.start = TimeUtils.timerToStandard(start);
     }
 
     public String getEnd() {
-        return end;
+        return TimeUtils.timerToStandard(end);
     }
 
     public void setEnd(String end) {
-        this.end = end;
+        this.end = TimeUtils.timerToStandard(end);
     }
 
     public String getDetail() {
