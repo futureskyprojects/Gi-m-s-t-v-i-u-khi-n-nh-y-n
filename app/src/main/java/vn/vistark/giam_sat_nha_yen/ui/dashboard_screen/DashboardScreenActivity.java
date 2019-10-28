@@ -8,11 +8,13 @@ import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.opencv.android.BaseLoaderCallback;
@@ -26,6 +28,8 @@ import org.opencv.core.Mat;
 import es.dmoral.toasty.Toasty;
 import vn.vistark.giam_sat_nha_yen.R;
 import vn.vistark.giam_sat_nha_yen.data.arduino_community.ArduinoCommunity;
+import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
+import vn.vistark.giam_sat_nha_yen.data.modal.Auto;
 import vn.vistark.giam_sat_nha_yen.ui.BaseAppCompatActivity;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_dialog.TimerDialog;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.video_transfer.VideoTransfer;
@@ -50,6 +54,9 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
     private TextView tvHumidity;
     private TextView tvTemperature;
     private TextView tvTimerListEmptyNotify;
+    private TextView tvAutoTemp;
+    private TextView tvAutoHumidity;
+    private SwitchCompat scTimerAutoPower;
 
     private LinearLayout lnMultiCameraButton;
     private LinearLayout lnMultiCamLayout;
@@ -78,9 +85,14 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
         initViews();
         initPresenters();
         initEvents();
+        initAutoSync();
         loadTimerList();
         initCamera();
         ArduinoCommunity.asyncCommunity(this);
+    }
+
+    private void initAutoSync() {
+        new Auto().sync(FirebaseConfig.myRef, this);
     }
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -122,6 +134,9 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
         ivImageCapturedS2 = findViewById(R.id.imageCapturedS2);
         ivImageCapturedS3 = findViewById(R.id.imageCapturedS3);
         ivImageCapturedS4 = findViewById(R.id.imageCapturedS4);
+        tvAutoTemp = findViewById(R.id.autoTemp);
+        tvAutoHumidity = findViewById(R.id.autoHumidity);
+        scTimerAutoPower = findViewById(R.id.timerAutoPower);
     }
 
     public void showMultiCamera() {
@@ -200,6 +215,14 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
                 }
             });
         }
+
+        // Sự kiện cho nút nguồn auto
+        scTimerAutoPower.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mPresenter.changeListByStateOfAutoPower(b);
+            }
+        });
     }
 
 
@@ -213,6 +236,38 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
         mPresenter.powerOffConfirm();
     }
 
+    public void updateAutoHumidity(final String start, final String end) {
+        tvAutoHumidity.post(new Runnable() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void run() {
+                tvAutoHumidity.setText(start + " - " + end + "%");
+            }
+        });
+    }
+
+    public void updateAutoTemp(final String start, final String end) {
+        tvAutoTemp.post(new Runnable() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void run() {
+                tvAutoTemp.setText(start + " - " + end);
+            }
+        });
+    }
+
+    public boolean getStateAutoPower() {
+        return scTimerAutoPower.isChecked();
+    }
+
+    public void updateTimerAutoPower(final Boolean state) {
+        scTimerAutoPower.post(new Runnable() {
+            @Override
+            public void run() {
+                scTimerAutoPower.setChecked(state);
+            }
+        });
+    }
 
     public void updateHumidityView(final String humidity) {
         tvHumidity.post(new Runnable() {

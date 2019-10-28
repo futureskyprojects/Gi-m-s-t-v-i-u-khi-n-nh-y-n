@@ -1,7 +1,5 @@
 package vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_list;
 
-import android.util.Log;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,7 +9,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import vn.vistark.giam_sat_nha_yen.data.arduino_community.ArduinoCommunity;
-import vn.vistark.giam_sat_nha_yen.data.db.modal.TimerItem;
+import vn.vistark.giam_sat_nha_yen.data.modal.Auto;
+import vn.vistark.giam_sat_nha_yen.data.modal.CurrentDetail;
+import vn.vistark.giam_sat_nha_yen.data.modal.DefaultTimerItem;
+import vn.vistark.giam_sat_nha_yen.data.modal.TimerItem;
 import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.utils.TimeUtils;
 
@@ -97,13 +98,51 @@ public class TimerList {
         for (int i = 0; i < TimerList.timerItems.size(); i++) {
             // Nếu timer này đang được bật nguồn
             if (TimerList.timerItems.get(i).isPower()) {
-                // Tiến hành kiểm tra xem nó có còn trong khung giờ không
-                if (TimeUtils.isInTimer(TimerList.timerItems.get(i).getStart(), TimerList.timerItems.get(i).getEnd())) {
-                    TimerList.timerItems.get(i).setState(true);
+                if (TimerList.timerItems.get(i).getId() != DefaultTimerItem.timerPortA.getId() ||
+                        TimerList.timerItems.get(i).getId() != DefaultTimerItem.timerPortB.getId() ||
+                        TimerList.timerItems.get(i).getId() != DefaultTimerItem.timerPortC.getId()) {
+                    // Nếu là các timer thông thường
+                    // Tiến hành kiểm tra xem nó có còn trong khung giờ không
+                    if (TimeUtils.isInTimer(TimerList.timerItems.get(i).getStart(), TimerList.timerItems.get(i).getEnd())) {
+                        TimerList.timerItems.get(i).setState(true);
 //                    Log.w(TAG, "checkStateUpdateAndSendData: Đang trong khung giờ.");
-                } else {
-                    TimerList.timerItems.get(i).setState(false);
+                    } else {
+                        TimerList.timerItems.get(i).setState(false);
 //                    Log.e(TAG, "checkStateUpdateAndSendData: Đang ngoài khung giờ.");
+                    }
+                } else {
+                    try {
+                        int currHumidity = Integer.parseInt(CurrentDetail.humidity);
+                        int currTemperature = Integer.parseInt(CurrentDetail.temperature);
+
+                        // Nếu là khung giờ mặc định của các cổng A,B,C
+                        if (TimeUtils.isInTimer(TimerList.timerItems.get(i).getStart(), TimerList.timerItems.get(i).getEnd())) {
+                            // Đối với hai máy bơm, cung cấp độ ẩm
+                            if (TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortA.getId() ||
+                                    TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortB.getId()) {
+                                if (currHumidity < Auto.humidityStartValue) {
+                                    TimerList.timerItems.get(i).setState(true);
+                                }
+
+                                if (currHumidity > Auto.humidityEndValue) {
+                                    TimerList.timerItems.get(i).setState(false);
+                                }
+                            } else {
+                                // Ngược lại đối với Port C là đèn, cung cấp nhiệt độ
+                                if (currTemperature < Auto.tempStartValue) {
+                                    TimerList.timerItems.get(i).setState(true);
+                                }
+
+                                if (currTemperature > Auto.tempEndValue) {
+                                    TimerList.timerItems.get(i).setState(false);
+                                }
+                            }
+                        } else {
+                            TimerList.timerItems.get(i).setState(false);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             } else {
                 TimerList.timerItems.get(i).setState(false);

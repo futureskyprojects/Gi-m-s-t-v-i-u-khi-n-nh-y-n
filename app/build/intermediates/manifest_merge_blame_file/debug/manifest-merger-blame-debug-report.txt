@@ -92,86 +92,87 @@
 48-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:44:9-47
 49        android:supportsRtl="true"
 49-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:45:9-35
-50        android:theme="@style/AppTheme"
-50-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:46:9-40
-51        android:usesCleartextTraffic="true" >
-51-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:47:9-44
-52        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity" >
-52-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:51:9-52:20
-52-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:51:19-78
-53        </activity>
-54        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.splash_screen.SplashScreenActivity" >
-54-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:53:9-54:20
-54-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:53:19-72
-55        </activity>
-56        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.MainActivity" >
-56-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:55:9-64:20
-56-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:55:19-50
-57            <intent-filter>
-57-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:56:13-60:29
-58                <action android:name="android.intent.action.MAIN" />
-58-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:57:17-69
-58-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:57:25-66
-59
-60                <category android:name="android.intent.category.LAUNCHER" />
-60-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:58:17-77
-60-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:58:27-74
-61
-62                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-62-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:59:17-90
-62-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:59:25-87
-63            </intent-filter>
-64
-65            <meta-data
-65-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:61:13-63:57
-66                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-66-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:62:17-79
-67                android:resource="@xml/device_filter" />
-67-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:63:17-54
-68        </activity>
-69
-70        <service
-70-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:29:9-35:19
-71            android:name="com.google.firebase.components.ComponentDiscoveryService"
-71-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:30:13-84
-72            android:directBootAware="true"
-72-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:15:13-43
-73            android:exported="false" >
-73-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:31:13-37
-74            <meta-data
-74-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:32:13-34:85
-75                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-75-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:33:17-109
-76                android:value="com.google.firebase.components.ComponentRegistrar" />
-76-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:34:17-82
-77        </service>
-78
-79        <activity
-79-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
-80            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-80-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
-81            android:exported="false"
-81-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
-82            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-82-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
-83
-84        <provider
-84-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:19:9-23:39
-85            android:name="com.google.firebase.provider.FirebaseInitProvider"
-85-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:20:13-77
-86            android:authorities="vn.vistark.dk_nha_yen.firebaseinitprovider"
-86-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:21:13-72
-87            android:exported="false"
-87-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:22:13-37
-88            android:initOrder="100" />
-88-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:23:13-36
-89
-90        <meta-data
-90-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\3afcd22420c5f66be4e23f5b1b8a57a8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
-91            android:name="com.google.android.gms.version"
-91-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\3afcd22420c5f66be4e23f5b1b8a57a8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
-92            android:value="@integer/google_play_services_version" />
-92-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\3afcd22420c5f66be4e23f5b1b8a57a8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
-93    </application>
-94
-95</manifest>
+50        android:testOnly="true"
+51        android:theme="@style/AppTheme"
+51-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:46:9-40
+52        android:usesCleartextTraffic="true" >
+52-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:47:9-44
+53        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity" >
+53-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:51:9-52:20
+53-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:51:19-78
+54        </activity>
+55        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.splash_screen.SplashScreenActivity" >
+55-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:53:9-54:20
+55-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:53:19-72
+56        </activity>
+57        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.MainActivity" >
+57-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:55:9-64:20
+57-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:55:19-50
+58            <intent-filter>
+58-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:56:13-60:29
+59                <action android:name="android.intent.action.MAIN" />
+59-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:57:17-69
+59-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:57:25-66
+60
+61                <category android:name="android.intent.category.LAUNCHER" />
+61-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:58:17-77
+61-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:58:27-74
+62
+63                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+63-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:59:17-90
+63-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:59:25-87
+64            </intent-filter>
+65
+66            <meta-data
+66-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:61:13-63:57
+67                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+67-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:62:17-79
+68                android:resource="@xml/device_filter" />
+68-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:63:17-54
+69        </activity>
+70
+71        <service
+71-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:29:9-35:19
+72            android:name="com.google.firebase.components.ComponentDiscoveryService"
+72-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:30:13-84
+73            android:directBootAware="true"
+73-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:15:13-43
+74            android:exported="false" >
+74-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:31:13-37
+75            <meta-data
+75-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:32:13-34:85
+76                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+76-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:33:17-109
+77                android:value="com.google.firebase.components.ComponentRegistrar" />
+77-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:34:17-82
+78        </service>
+79
+80        <activity
+80-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+81            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+81-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+82            android:exported="false"
+82-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+83            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+83-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+84
+85        <provider
+85-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:19:9-23:39
+86            android:name="com.google.firebase.provider.FirebaseInitProvider"
+86-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:20:13-77
+87            android:authorities="vn.vistark.dk_nha_yen.firebaseinitprovider"
+87-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:21:13-72
+88            android:exported="false"
+88-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:22:13-37
+89            android:initOrder="100" />
+89-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:23:13-36
+90
+91        <meta-data
+91-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\3afcd22420c5f66be4e23f5b1b8a57a8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+92            android:name="com.google.android.gms.version"
+92-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\3afcd22420c5f66be4e23f5b1b8a57a8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+93            android:value="@integer/google_play_services_version" />
+93-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\3afcd22420c5f66be4e23f5b1b8a57a8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+94    </application>
+95
+96</manifest>

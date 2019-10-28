@@ -15,7 +15,8 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import es.dmoral.toasty.Toasty;
 import vn.vistark.giam_sat_nha_yen.R;
-import vn.vistark.giam_sat_nha_yen.data.db.modal.TimerItem;
+import vn.vistark.giam_sat_nha_yen.data.modal.DefaultTimerItem;
+import vn.vistark.giam_sat_nha_yen.data.modal.TimerItem;
 import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_dialog.TimerDialog;
 
@@ -92,37 +93,46 @@ public class TimerListAdapter extends RecyclerView.Adapter<TimerListViewHolder> 
     }
 
     private void askForRemoveTimerItem(final Context context, final int position) {
-        SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE);
-        sweetAlertDialog.setTitleText("XÁC NHẬN XÓA HẸN GIỜ?").show();
-        sweetAlertDialog.setConfirmText("Xóa");
-        sweetAlertDialog.setCancelText("Đóng");
+        try {
+            final TimerItem timerItem = timerItems.get(position);
+            if (timerItem.getId() == DefaultTimerItem.timerPortA.getId() ||
+                    timerItem.getId() == DefaultTimerItem.timerPortB.getId() ||
+                    timerItem.getId() == DefaultTimerItem.timerPortC.getId() ||
+                    timerItem.getId() == DefaultTimerItem.timerPortD.getId()) {
+                // Nếu là một trong các timer mặc định thì không thể xóa
+                Toasty.warning(context, "Không thể xóa hẹn giờ mặc định", Toasty.LENGTH_LONG, false).show();
+            } else {
+                // Nếu không phải là timer mặc định
+                SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE);
+                sweetAlertDialog.setTitleText("XÁC NHẬN XÓA HẸN GIỜ?").show();
+                sweetAlertDialog.setConfirmText("Xóa");
+                sweetAlertDialog.setCancelText("Đóng");
 
-        sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                try {
-                    TimerItem timerItem = timerItems.get(position);
-                    timerRef.child(timerItem.getId() + "").removeValue();
+                sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        timerRef.child(timerItem.getId() + "").removeValue();
 
-                    TimerList.removeRemoveAndRefresh(timerItem.getId());
-                    notifyDataSetChanged();
-                    if (timerItems.indexOf(timerItem) < 0) {
-                        Toasty.success(context, "Đã xóa").show();
+                        TimerList.removeRemoveAndRefresh(timerItem.getId());
+                        notifyDataSetChanged();
+                        if (timerItems.indexOf(timerItem) < 0) {
+                            Toasty.success(context, "Đã xóa").show();
+                        }
+                        sweetAlertDialog.dismiss();
                     }
-                    sweetAlertDialog.dismiss();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+                });
 
-        sweetAlertDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                sweetAlertDialog.dismiss();
-            }
-        });
+                sweetAlertDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismiss();
+                    }
+                });
 
-        sweetAlertDialog.show();
+                sweetAlertDialog.show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

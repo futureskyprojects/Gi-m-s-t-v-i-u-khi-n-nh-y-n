@@ -8,7 +8,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Calendar;
 
 import vn.vistark.giam_sat_nha_yen.Config;
-import vn.vistark.giam_sat_nha_yen.data.db.modal.TimerItem;
+import vn.vistark.giam_sat_nha_yen.data.modal.Auto;
+import vn.vistark.giam_sat_nha_yen.data.modal.CurrentDetail;
+import vn.vistark.giam_sat_nha_yen.data.modal.TimerItem;
 
 /**
  * Project ĐK Nhà Yến
@@ -21,8 +23,9 @@ public class FirebaseConfig {
     private final static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public final static DatabaseReference myRef = database.getReference(Config.DEVEICE_NAME);
     public final static DatabaseReference timerRef = myRef.child("Timer");
-    public final static DatabaseReference infomationRef = myRef.child("Information");
-    public final static DatabaseReference configRef = myRef.child("Config");
+    private final static DatabaseReference infomationRef = myRef.child("Information");
+    private final static DatabaseReference configRef = myRef.child("Config");
+    public final static DatabaseReference autoRef = myRef.child("Auto");
     public final static DatabaseReference wsRef = configRef.child("ws");
 
     public final static String KEY_PORT = "port";
@@ -32,8 +35,9 @@ public class FirebaseConfig {
     public final static String KEY_START = "start";
     public final static String KEY_END = "end";
 
-    public final static String KEY_HUMIDITY = "Humidity";
-    public final static String KEY_TEMPERATURE = "Temp";
+    private final static String KEY_HUMIDITY = "Humidity";
+    private final static String KEY_TEMPERATURE = "Temp";
+
 
     // cập nhật timer item
     public static void updateData(TimerItem timerItem) {
@@ -47,7 +51,7 @@ public class FirebaseConfig {
     }
 
     // Cập nhật nhiệt độ và độ ẩm
-    public static void updateTemperatureAndHumidity(String temperature, String humidity) {
+    public static void updateTemperatureAndHumidity() {
         // lấy thời gian hiện tại
         Calendar calendar = Calendar.getInstance();
         // Lấy chuỗi ngày tháng của hôm nay
@@ -60,8 +64,8 @@ public class FirebaseConfig {
         // Lấy key giờ
         String keyHour = calendar.get(Calendar.HOUR_OF_DAY) + "";
         DatabaseReference keyHourRef = keyTimeRef.child(keyHour);
-        keyHourRef.child(KEY_HUMIDITY).setValue(humidity);
-        keyHourRef.child(KEY_TEMPERATURE).setValue(temperature);
+        keyHourRef.child(KEY_HUMIDITY).setValue(CurrentDetail.humidity);
+        keyHourRef.child(KEY_TEMPERATURE).setValue(CurrentDetail.temperature);
 
     }
 }

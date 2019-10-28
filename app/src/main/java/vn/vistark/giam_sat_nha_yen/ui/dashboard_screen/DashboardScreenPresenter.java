@@ -17,8 +17,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import vn.vistark.giam_sat_nha_yen.data.db.TimerItemDb.TimerItemHelper;
-import vn.vistark.giam_sat_nha_yen.data.db.modal.TimerItem;
+import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
+import vn.vistark.giam_sat_nha_yen.data.modal.Auto;
+import vn.vistark.giam_sat_nha_yen.data.modal.DefaultTimerItem;
+import vn.vistark.giam_sat_nha_yen.data.modal.TimerItem;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_list.TimerList;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.video_transfer.VideoTransfer;
 import vn.vistark.giam_sat_nha_yen.utils.CommonUtils;
@@ -46,7 +48,6 @@ public class DashboardScreenPresenter {
     private DashboardScreenActivity mContext;
     private TimerList mTimerList;
 
-    private TimerItemHelper timerItemHelper;
 
     private ProgressDialog noInternetDialog;
 
@@ -57,13 +58,9 @@ public class DashboardScreenPresenter {
         this.mContext = mContext;
         runningCurrentTime(); // Cập nhật thời gian thực theo giờ hiện tại
         establishTime();    // cập nhật số giờ đã chạy của ứng dụng
-        initDatabase(); // Thiết lập kết nối đến firebase
         noInternetDialog = CommonUtils.showNoInternetDialog(mContext);
     }
 
-    private void initDatabase() {
-        timerItemHelper = new TimerItemHelper(mContext);
-    }
 
     private void runningCurrentTime() {
         @SuppressLint("SimpleDateFormat") final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -130,6 +127,29 @@ public class DashboardScreenPresenter {
         }
     }
 
+    void changeListByStateOfAutoPower(Boolean state) {
+        if (Auto.updatedPower) {
+            for (int i = 0; i < TimerList.timerItems.size(); i++) {
+                TimerItem timerItem = TimerList.timerItems.get(i);
+                if (timerItem.getId() != DefaultTimerItem.timerPortD.getId()) {
+                    if (timerItem.getId() == DefaultTimerItem.timerPortA.getId() ||
+                            timerItem.getId() == DefaultTimerItem.timerPortB.getId() ||
+                            timerItem.getId() == DefaultTimerItem.timerPortC.getId()) {
+                        timerItem.setPower(state);
+                    } else {
+                        timerItem.setPower(!state);
+                    }
+                    try {
+                        mTimerList.notifyDataChanged();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    FirebaseConfig.updateData(timerItem);
+                }
+            }
+        }
+    }
+
     private void updateOrReplaceTimerItem(TimerItem timerItem) {
         if (TimerList.timerItems == null) {
             TimerList.timerItems = new ArrayList<>();
@@ -151,26 +171,35 @@ public class DashboardScreenPresenter {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if (ds.getKey() != null) {
-                        TimerItem timerItem = new TimerItem();
-                        timerItem.setId(Long.parseLong(ds.getKey()));
-                        for (DataSnapshot ds2 : ds.getChildren()) {
-                            if (ds2.getKey() != null && ds2.getKey().equals(KEY_PORT) && ds2.getValue() != null) {
-                                timerItem.setPort(ds2.getValue().toString());
-                            } else if (ds2.getKey() != null && ds2.getKey().equals(KEY_LABEL) && ds2.getValue() != null) {
-                                timerItem.setLabel(ds2.getValue().toString());
-                            } else if (ds2.getKey() != null && ds2.getKey().equals(KEY_POWER) && ds2.getValue() != null) {
-                                timerItem.setPower(ds2.getValue().toString());
-                            } else if (ds2.getKey() != null && ds2.getKey().equals(KEY_STATE) && ds2.getValue() != null) {
-                                timerItem.setState(ds2.getValue().toString());
-                            } else if (ds2.getKey() != null && ds2.getKey().equals(KEY_START) && ds2.getValue() != null) {
-                                timerItem.setStart(ds2.getValue().toString());
-                            } else if (ds2.getKey() != null && ds2.getKey().equals(KEY_END) && ds2.getValue() != null) {
-                                timerItem.setEnd(ds2.getValue().toString());
+                    try {
+                        DefaultTimerItem.check(ds);
+                        if (ds.getKey() != null) {
+                            TimerItem timerItem = new TimerItem();
+                            timerItem.setId(Long.parseLong(ds.getKey()));
+                            for (DataSnapshot ds2 : ds.getChildren()) {
+                                if (ds2.getKey() != null && ds2.getKey().equals(KEY_PORT) && ds2.getValue() != null) {
+                                    timerItem.setPort(ds2.getValue().toString());
+                                } else if (ds2.getKey() != null && ds2.getKey().equals(KEY_LABEL) && ds2.getValue() != null) {
+                                    timerItem.setLabel(ds2.getValue().toString());
+                                } else if (ds2.getKey() != null && ds2.getKey().equals(KEY_POWER) && ds2.getValue() != null) {
+                                    timerItem.setPower(ds2.getValue().toString());
+                                } else if (ds2.getKey() != null && ds2.getKey().equals(KEY_STATE) && ds2.getValue() != null) {
+                                    timerItem.setState(ds2.getValue().toString());
+                                } else if (ds2.getKey() != null && ds2.getKey().equals(KEY_START) && ds2.getValue() != null) {
+                                    timerItem.setStart(ds2.getValue().toString());
+                                } else if (ds2.getKey() != null && ds2.getKey().equals(KEY_END) && ds2.getValue() != null) {
+                                    timerItem.setEnd(ds2.getValue().toString());
+                                }
                             }
+                            // Cập nhật hoặc thêm mới vào đây
+                            updateOrReplaceTimerItem(timerItem);
                         }
-                        // Cập nhật hoặc thêm mới vào đây
-                        updateOrReplaceTimerItem(timerItem);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        if (ds.getKey() != null) {
+                            // Nếu xuất hiện giá trị bất thường thì xóa nó đi
+                            timerRef.child(ds.getKey()).removeValue();
+                        }
                     }
                 }
             }

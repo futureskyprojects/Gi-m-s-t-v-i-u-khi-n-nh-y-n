@@ -1,4 +1,4 @@
-package vn.vistark.giam_sat_nha_yen.data.db.modal;
+package vn.vistark.giam_sat_nha_yen.data.modal;
 
 import java.util.ArrayList;
 import java.util.List;

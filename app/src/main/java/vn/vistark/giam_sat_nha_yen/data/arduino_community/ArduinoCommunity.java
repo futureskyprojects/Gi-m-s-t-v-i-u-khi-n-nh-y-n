@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 import es.dmoral.toasty.Toasty;
 import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
+import vn.vistark.giam_sat_nha_yen.data.modal.CurrentDetail;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity;
 import vn.vistark.giam_sat_nha_yen.utils.CommonUtils;
 
@@ -145,12 +146,12 @@ public class ArduinoCommunity {
         while (matcher.find()) {
             String gotted = matcher.group(0);
             if (gotted != null) {
-                String temperature = gotted.substring(1, 3);
-                String humidity = gotted.substring(3, 5);
-                Log.d(TAG, "Nhiệt độ " + temperature + " - Độ ẩm: " + humidity);
-                mContext.updateTemperature(temperature);
-                mContext.updateHumidityView(humidity);
-                FirebaseConfig.updateTemperatureAndHumidity(temperature, humidity);
+                CurrentDetail.temperature = gotted.substring(1, 3);
+                CurrentDetail.humidity = gotted.substring(3, 5);
+                Log.d(TAG, "Nhiệt độ " + CurrentDetail.temperature + " - Độ ẩm: " + CurrentDetail.humidity);
+                mContext.updateTemperature(CurrentDetail.temperature);
+                mContext.updateHumidityView(CurrentDetail.humidity);
+                FirebaseConfig.updateTemperatureAndHumidity();
             }
         }
     }

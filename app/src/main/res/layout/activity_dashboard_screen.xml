@@ -150,22 +150,19 @@
                     android:tint="@android:color/white" />
 
                 <LinearLayout
-                    android:id="@+id/cancelCameraBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/burning_orange"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:padding="10dp"
-                    android:visibility="gone">
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:padding="10dp">
 
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/disable_cam"
-                        android:tint="@android:color/white" />
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_gravity="center"
+                        android:id="@+id/timerAutoPower"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -173,7 +170,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:paddingStart="5dp"
-                        android:text="Đóng camera"
+                        android:text="Hẹn giờ tự động"
                         android:textColor="@android:color/white"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -347,12 +344,10 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
                         android:layout_weight="1"
                         android:orientation="horizontal"
                         android:padding="5dp"
-                        android:weightSum="2"
+                        android:weightSum="3"
                         tools:ignore="NestedWeights">
 
                         <LinearLayout
@@ -383,7 +378,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="Chưa xác định"
+                                android:text="--:--:--"
                                 android:textAlignment="center"
                                 android:textColor="@android:color/white"
                                 android:textSize="18sp" />
@@ -419,7 +414,42 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="Chưa xác định"
+                                android:text="--:--:--"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center|left"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="5dp"
+                                android:src="@drawable/ic_thermometer" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Khoảng t°: "
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/autoTemp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:maxLines="1"
+                                android:text="-- - -- °C"
                                 android:textAlignment="center"
                                 android:textColor="@android:color/white"
                                 android:textSize="18sp" />
@@ -429,12 +459,10 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
                         android:layout_weight="1"
                         android:orientation="horizontal"
                         android:padding="5dp"
-                        android:weightSum="2"
+                        android:weightSum="3"
                         tools:ignore="NestedWeights">
 
                         <LinearLayout
@@ -465,7 +493,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="Chưa xác định"
+                                android:text="--%"
                                 android:textAlignment="center"
                                 android:textColor="@android:color/white"
                                 android:textSize="18sp" />
@@ -498,7 +526,42 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="Chưa xác định"
+                                android:text="--°C"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center|left"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="5dp"
+                                android:src="@drawable/ic_humidity_zone" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Khoảng ẩm: "
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/autoHumidity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:maxLines="1"
+                                android:text="-- - -- %"
                                 android:textAlignment="center"
                                 android:textColor="@android:color/white"
                                 android:textSize="18sp" />

@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import es.dmoral.toasty.Toasty;
-import vn.vistark.giam_sat_nha_yen.data.db.modal.TimerItem;
+import vn.vistark.giam_sat_nha_yen.data.modal.TimerItem;
 import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_list.TimerListAdapter;
 
