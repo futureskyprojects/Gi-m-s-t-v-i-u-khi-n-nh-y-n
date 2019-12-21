@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
 
+import es.dmoral.toasty.Toasty;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.WebSocket;
@@ -53,12 +54,18 @@ public class VideoTransfer {
         });
     }
 
-    public static void init() {
-        Request request = new Request.Builder().url(gottedUrl).build();
-        listener = new VideoWebSocketListener();
-        OkHttpClient client = new OkHttpClient();
-        ws = client.newWebSocket(request, listener);
-        client.dispatcher().executorService().shutdown();
+    public static boolean init() {
+        try {
+            Request request = new Request.Builder().url(gottedUrl).build();
+            listener = new VideoWebSocketListener();
+            OkHttpClient client = new OkHttpClient();
+            ws = client.newWebSocket(request, listener);
+            client.dispatcher().executorService().shutdown();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public static boolean send(Bitmap bitmap) {

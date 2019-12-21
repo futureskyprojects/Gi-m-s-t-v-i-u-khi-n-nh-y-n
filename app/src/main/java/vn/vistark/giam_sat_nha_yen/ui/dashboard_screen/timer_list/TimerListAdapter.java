@@ -113,7 +113,7 @@ public class TimerListAdapter extends RecyclerView.Adapter<TimerListViewHolder> 
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
                         timerRef.child(timerItem.getId() + "").removeValue();
 
-                        TimerList.removeRemoveAndRefresh(timerItem.getId());
+                        TimerList.removeAndRefresh(timerItem.getId());
                         notifyDataSetChanged();
                         if (timerItems.indexOf(timerItem) < 0) {
                             Toasty.success(context, "Đã xóa").show();

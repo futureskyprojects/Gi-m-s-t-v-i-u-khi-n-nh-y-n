@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity;
+import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_list.TimerList;
 
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.KEY_END;
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.KEY_LABEL;
@@ -39,7 +40,7 @@ public class Auto {
     private final static String tempKey = "temp";
     private final static String tempStartKey = "start";
     private final static String tempEndKey = "end";
-    private final static String powerKey = "power";
+    public final static String powerKey = "power";
 
     public static int humidityStartValue = 70;
     public static int humidityEndValue = 90;
@@ -47,8 +48,6 @@ public class Auto {
     public static int tempEndValue = 100;
 
     public static boolean powerValue = false;
-
-    public static boolean updatedPower = false;
 
     public void sync(DatabaseReference rootRef, final DashboardScreenActivity context) {
         if (rootRef != null) {
@@ -134,27 +133,6 @@ public class Auto {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w(TAG, "Lỗi khi đọc dữ liệu.", databaseError.toException());
-            }
-        });
-
-        autoRef.child(powerKey).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                try {
-                    if (dataSnapshot.getValue() != null) {
-                        powerValue = Boolean.parseBoolean(dataSnapshot.getValue().toString());
-                        if (powerValue != context.getStateAutoPower())
-                            context.updateTimerAutoPower(powerValue);
-                        updatedPower = true;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
 

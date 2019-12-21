@@ -22,21 +22,20 @@ public class TimerItem {
     private String end = "";
     private String detail = "";
 
-    public static List<TimerItem> getInstance() {
-        List<TimerItem> timerItems = new ArrayList<>();
-        timerItems.add(new TimerItem(1, "aaaa", "A", true, false, "8:00", "12:00", ""));
-        timerItems.add(new TimerItem(2, "bbbb", "B", false, true, "8:00", "12:00", ""));
-        timerItems.add(new TimerItem(1, "aaaa", "A", true, false, "8:00", "12:00", ""));
-        timerItems.add(new TimerItem(2, "bbbb", "B", false, true, "8:00", "12:00", ""));
-        timerItems.add(new TimerItem(1, "aaaa", "A", true, false, "8:00", "12:00", ""));
-        timerItems.add(new TimerItem(2, "bbbb", "B", false, true, "8:00", "12:00", ""));
-        return timerItems;
-    }
-
     public TimerItem() {
 
     }
 
+    public void update(TimerItem timerItem) {
+        this.id = timerItem.getId();
+        this.label = timerItem.getLabel();
+        this.port = timerItem.getPort();
+        this.power = timerItem.isPower();
+        this.state = timerItem.isState();
+        this.start = timerItem.getStart();
+        this.end = timerItem.getEnd();
+        this.detail = timerItem.getDetail();
+    }
 
     public TimerItem(long id, String label, String port, boolean power, boolean state, String start, String end, String detail) {
         this.id = id;
@@ -88,8 +87,9 @@ public class TimerItem {
         return power;
     }
 
-    public void setPower(boolean power) {
+    public TimerItem setPower(boolean power) {
         this.power = power;
+        return this;
     }
 
     public void setPower(String power) {

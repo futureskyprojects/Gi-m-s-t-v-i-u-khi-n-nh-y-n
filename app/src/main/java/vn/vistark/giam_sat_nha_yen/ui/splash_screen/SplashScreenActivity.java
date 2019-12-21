@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import vn.vistark.giam_sat_nha_yen.R;
+import vn.vistark.giam_sat_nha_yen.services.CustomExceptionHandler;
 import vn.vistark.giam_sat_nha_yen.ui.BaseAppCompatActivity;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.video_transfer.VideoTransfer;
@@ -32,6 +33,7 @@ public class SplashScreenActivity extends AppCompatActivity implements BaseAppCo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        Thread.setDefaultUncaughtExceptionHandler(new CustomExceptionHandler(this));
         ScreenUtils.hideTitleBarAndTransparentStatusBar(this);
         initViews();
         initEvents();

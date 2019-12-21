@@ -1,0 +1,4 @@
+#Sat Dec 21 18:57:29 ICT 2019
+base.0=F\:\\Freelancer\\MyCode\\GiamSatDieuKhienNhaNuoiChimYen\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

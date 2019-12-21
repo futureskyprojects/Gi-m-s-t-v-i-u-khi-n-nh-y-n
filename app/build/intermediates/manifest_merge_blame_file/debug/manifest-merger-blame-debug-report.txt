@@ -6,173 +6,173 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
-8-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml
+8-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml
+9-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml
 10
 11    <supports-screens
-11-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:6:5-11:39
+11-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:6:5-11:39
 12        android:anyDensity="true"
-12-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:7:9-34
+12-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:7:9-34
 13        android:largeScreens="true"
-13-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:8:9-36
+13-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:8:9-36
 14        android:normalScreens="true"
-14-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:9:9-37
+14-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:9:9-37
 15        android:resizeable="true"
-15-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:10:9-34
+15-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:10:9-34
 16        android:smallScreens="true" />
-16-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:11:9-36
+16-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:11:9-36
 17
 18    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-18-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:13:5-80
-18-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:13:22-77
+18-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:13:5-80
+18-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:13:22-77
 19    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-19-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:14:5-79
-19-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:14:22-76
+19-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:14:5-79
+19-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:14:22-76
 20    <uses-permission android:name="android.permission.INTERNET" />
-20-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:15:5-67
-20-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:15:22-64
+20-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:15:5-67
+20-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:15:22-64
 21    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-21-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:16:5-81
-21-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:16:22-78
+21-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:16:5-81
+21-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:16:22-78
 22    <uses-permission android:name="android.permission.CAMERA" />
-22-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:17:5-65
-22-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:17:22-62
+22-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:17:5-65
+22-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:17:22-62
 23    <uses-permission android:name="android.permission.VIBRATE" />
-23-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:18:5-66
-23-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:18:22-63
+23-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:18:5-66
+23-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:18:22-63
 24    <uses-permission android:name="android.permission.WAKE_LOCK" />
-24-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:19:5-68
-24-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:19:22-65
+24-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:19:5-68
+24-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:19:22-65
 25
 26    <uses-feature
-26-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:22:5-24:36
+26-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:21:5-23:36
 27        android:name="android.hardware.camera"
-27-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:23:9-47
+27-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:22:9-47
 28        android:required="false" />
-28-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:24:9-33
+28-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:23:9-33
 29    <uses-feature
-29-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:25:5-27:36
+29-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:24:5-26:36
 30        android:name="android.hardware.camera.autofocus"
-30-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:26:9-57
+30-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:25:9-57
 31        android:required="false" />
-31-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:27:9-33
+31-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:26:9-33
 32    <uses-feature
-32-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:28:5-30:36
+32-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:27:5-29:36
 33        android:name="android.hardware.camera.front"
-33-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:29:9-53
+33-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:28:9-53
 34        android:required="false" />
-34-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:30:9-33
+34-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:29:9-33
 35    <uses-feature
-35-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:31:5-33:36
+35-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:30:5-32:36
 36        android:name="android.hardware.camera.front.autofocus"
-36-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:32:9-63
+36-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:31:9-63
 37        android:required="false" />
-37-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:33:9-33
+37-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:32:9-33
 38    <uses-feature android:name="android.hardware.usb.host" />
-38-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:35:5-62
-38-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:35:19-59
+38-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:33:5-62
+38-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:33:19-59
 39
 40    <uses-permission android:name="android.permission.MANAGE_USB" />
-40-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:37:5-39:47
-40-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:38:9-53
+40-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:35:5-37:47
+40-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:36:9-53
 41
 42    <application
-42-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:41:5-65:19
-43        android:allowBackup="true"
-43-->[com.pnikosis:materialish-progress:1.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\3ce4b14745c1c89714848163f47fc79b\materialish-progress-1.0\AndroidManifest.xml:12:9-35
-44        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-44-->[androidx.core:core:1.1.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\56b6cdfbd80af409835a31a4470c49f0\core-1.1.0\AndroidManifest.xml:24:18-86
-45        android:debuggable="true"
-46        android:icon="@drawable/logo_ntu"
-46-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:42:9-42
-47        android:label="@string/app_name"
-47-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:43:9-41
-48        android:roundIcon="@drawable/logo_ntu"
-48-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:44:9-47
-49        android:supportsRtl="true"
-49-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:45:9-35
-50        android:testOnly="true"
-51        android:theme="@style/AppTheme"
-51-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:46:9-40
-52        android:usesCleartextTraffic="true" >
-52-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:47:9-44
-53        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity" >
-53-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:51:9-52:20
-53-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:51:19-78
-54        </activity>
-55        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.splash_screen.SplashScreenActivity" >
-55-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:53:9-54:20
-55-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:53:19-72
-56        </activity>
-57        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.MainActivity" >
-57-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:55:9-64:20
-57-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:55:19-50
-58            <intent-filter>
-58-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:56:13-60:29
-59                <action android:name="android.intent.action.MAIN" />
-59-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:57:17-69
-59-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:57:25-66
-60
-61                <category android:name="android.intent.category.LAUNCHER" />
-61-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:58:17-77
-61-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:58:27-74
-62
-63                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-63-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:59:17-90
-63-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:59:25-87
-64            </intent-filter>
-65
-66            <meta-data
-66-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:61:13-63:57
-67                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-67-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:62:17-79
-68                android:resource="@xml/device_filter" />
-68-->E:\Projects\DieuKhienNhaYen\app\src\main\AndroidManifest.xml:63:17-54
-69        </activity>
-70
-71        <service
-71-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:29:9-35:19
-72            android:name="com.google.firebase.components.ComponentDiscoveryService"
-72-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:30:13-84
-73            android:directBootAware="true"
-73-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:15:13-43
-74            android:exported="false" >
-74-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:31:13-37
-75            <meta-data
-75-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:32:13-34:85
-76                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-76-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:33:17-109
-77                android:value="com.google.firebase.components.ComponentRegistrar" />
-77-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:34:17-82
-78        </service>
-79
-80        <activity
-80-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
-81            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-81-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
-82            android:exported="false"
-82-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
-83            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-83-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
-84
-85        <provider
-85-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:19:9-23:39
-86            android:name="com.google.firebase.provider.FirebaseInitProvider"
-86-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:20:13-77
-87            android:authorities="vn.vistark.dk_nha_yen.firebaseinitprovider"
-87-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:21:13-72
-88            android:exported="false"
-88-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:22:13-37
-89            android:initOrder="100" />
-89-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:23:13-36
-90
-91        <meta-data
-91-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\3afcd22420c5f66be4e23f5b1b8a57a8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
-92            android:name="com.google.android.gms.version"
-92-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\3afcd22420c5f66be4e23f5b1b8a57a8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
-93            android:value="@integer/google_play_services_version" />
-93-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\3afcd22420c5f66be4e23f5b1b8a57a8\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
-94    </application>
-95
-96</manifest>
+42-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:39:5-66:19
+43        android:name="vn.vistark.giam_sat_nha_yen.services.CustomApplication"
+43-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:44:9-51
+44        android:allowBackup="true"
+44-->[com.pnikosis:materialish-progress:1.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\3ce4b14745c1c89714848163f47fc79b\materialish-progress-1.0\AndroidManifest.xml:12:9-35
+45        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+45-->[androidx.core:core:1.1.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\56b6cdfbd80af409835a31a4470c49f0\core-1.1.0\AndroidManifest.xml:24:18-86
+46        android:debuggable="true"
+47        android:icon="@drawable/logo_ntu"
+47-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:40:9-42
+48        android:label="@string/app_name"
+48-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:41:9-41
+49        android:roundIcon="@drawable/logo_ntu"
+49-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:42:9-47
+50        android:supportsRtl="true"
+50-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:43:9-35
+51        android:testOnly="true"
+52        android:theme="@style/AppTheme"
+52-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:45:9-40
+53        android:usesCleartextTraffic="true" >
+53-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:46:9-44
+54        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity" />
+54-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:51:9-90
+54-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:51:19-78
+55        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.splash_screen.SplashScreenActivity" />
+55-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:52:9-84
+55-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:52:19-72
+56        <activity android:name="vn.vistark.giam_sat_nha_yen.ui.MainActivity" >
+56-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:53:9-65:20
+56-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:53:19-50
+57            <intent-filter>
+57-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:54:13-60:29
+58                <action android:name="android.intent.action.MAIN" />
+58-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:55:17-69
+58-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:55:25-66
+59
+60                <category android:name="android.intent.category.LAUNCHER" />
+60-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:57:17-77
+60-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:57:27-74
+61
+62                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+62-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:59:17-90
+62-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:59:25-87
+63            </intent-filter>
+64
+65            <meta-data
+65-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:62:13-64:57
+66                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+66-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:63:17-79
+67                android:resource="@xml/device_filter" />
+67-->F:\Freelancer\MyCode\GiamSatDieuKhienNhaNuoiChimYen\app\src\main\AndroidManifest.xml:64:17-54
+68        </activity>
+69
+70        <service
+70-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:29:9-35:19
+71            android:name="com.google.firebase.components.ComponentDiscoveryService"
+71-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:30:13-84
+72            android:directBootAware="true"
+72-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:15:13-43
+73            android:exported="false" >
+73-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:31:13-37
+74            <meta-data
+74-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:32:13-34:85
+75                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+75-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:33:17-109
+76                android:value="com.google.firebase.components.ComponentRegistrar" />
+76-->[com.google.firebase:firebase-database:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\463da60977420e86b3b59aa784a805a0\firebase-database-19.2.0\AndroidManifest.xml:34:17-82
+77        </service>
+78
+79        <activity
+79-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+80            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+80-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+81            android:exported="false"
+81-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+82            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+82-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\c423a4a4c865f1495e65a77f87be0907\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+83
+84        <provider
+84-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:19:9-23:39
+85            android:name="com.google.firebase.provider.FirebaseInitProvider"
+85-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:20:13-77
+86            android:authorities="vn.vistark.dk_nha_yen.firebaseinitprovider"
+86-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:21:13-72
+87            android:exported="false"
+87-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:22:13-37
+88            android:initOrder="100" />
+88-->[com.google.firebase:firebase-common:19.2.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\61c47ccf880e44b6c829a8c9a48ba20d\firebase-common-19.2.0\AndroidManifest.xml:23:13-36
+89
+90        <meta-data
+90-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\86ffe6e6a949b5626962c3d7e4dbd057\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+91            android:name="com.google.android.gms.version"
+91-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\86ffe6e6a949b5626962c3d7e4dbd057\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+92            android:value="@integer/google_play_services_version" />
+92-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Vistark\.gradle\caches\transforms-2\files-2.1\86ffe6e6a949b5626962c3d7e4dbd057\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+93    </application>
+94
+95</manifest>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import vn.vistark.giam_sat_nha_yen.R;
+import vn.vistark.giam_sat_nha_yen.services.CustomExceptionHandler;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity;
 import vn.vistark.giam_sat_nha_yen.ui.splash_screen.SplashScreenActivity;
 import vn.vistark.giam_sat_nha_yen.utils.ScreenUtils;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Thread.setDefaultUncaughtExceptionHandler(new CustomExceptionHandler(this));
         ScreenUtils.hideTitleBarAndTransparentStatusBar(this);
         startSplashScreen();
     }
@@ -33,13 +35,6 @@ public class MainActivity extends AppCompatActivity {
     void startSplashScreen() {
         Intent splashScreenIntent = new Intent(MainActivity.this, SplashScreenActivity.class);
         startActivity(splashScreenIntent);
-        MainActivity.this.finish();
-    }
-
-    // Phương thức khởi chạy dashboard screen
-    void startDashboardScreen() {
-        Intent dashboardScreenIntent = new Intent(MainActivity.this, DashboardScreenActivity.class);
-        startActivity(dashboardScreenIntent);
         MainActivity.this.finish();
     }
 }

@@ -55,7 +55,7 @@ public class DefaultTimerItem {
             Config.PORT_D_NAME,
             "D",
             true,
-            false,
+            true,
             "00:00",
             "23:59",
             "Timer mặc định để điều khiển port D hoạt động 24/24"
@@ -63,15 +63,19 @@ public class DefaultTimerItem {
 
     public static void check(DataSnapshot ds) {
         if (!ds.hasChild(timerPortA.getId() + "")) {
+            Log.e(TAG, "check: Không có A");
             FirebaseConfig.updateData(timerPortA);
         }
         if (!ds.hasChild(timerPortB.getId() + "")) {
+            Log.e(TAG, "check: Không có B");
             FirebaseConfig.updateData(timerPortB);
         }
         if (!ds.hasChild(timerPortC.getId() + "")) {
+            Log.e(TAG, "check: Không có C");
             FirebaseConfig.updateData(timerPortC);
         }
         if (!ds.hasChild(timerPortD.getId() + "")) {
+            Log.e(TAG, "check: Không có D");
             FirebaseConfig.updateData(timerPortD);
         }
     }

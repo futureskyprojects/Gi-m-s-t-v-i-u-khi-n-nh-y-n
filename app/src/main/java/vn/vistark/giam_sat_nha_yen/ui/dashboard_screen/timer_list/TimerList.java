@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,6 +16,7 @@ import vn.vistark.giam_sat_nha_yen.data.modal.DefaultTimerItem;
 import vn.vistark.giam_sat_nha_yen.data.modal.TimerItem;
 import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.utils.TimeUtils;
+import vn.vistark.giam_sat_nha_yen.utils.TimerItemComparator;
 
 /**
  * Project ĐK Nhà Yến
@@ -45,35 +47,6 @@ public class TimerList {
         timerForChecking();
     }
 
-    public void RefreshData(List<TimerItem> timerItems) {
-        TimerList.timerItems.clear();
-        TimerList.timerItems = timerItems;
-    }
-
-    public RecyclerView getmTimerList() {
-        return mTimerList;
-    }
-
-    public void setmTimerList(RecyclerView mTimerList) {
-        this.mTimerList = mTimerList;
-    }
-
-    public TimerListAdapter getmTimerListApdater() {
-        return mTimerListApdater;
-    }
-
-    public void setmTimerListApdater(TimerListAdapter mTimerListApdater) {
-        this.mTimerListApdater = mTimerListApdater;
-    }
-
-    public List<TimerItem> getTimerItems() {
-        return timerItems;
-    }
-
-    public void setTimerItems(List<TimerItem> timerItems) {
-        TimerList.timerItems = timerItems;
-    }
-
     public void notifyDataChanged() {
         try {
             this.mTimerListApdater.notifyDataSetChanged();
@@ -96,64 +69,71 @@ public class TimerList {
             return;
         // Lặp trong danh sách các cổng
         for (int i = 0; i < TimerList.timerItems.size(); i++) {
-            // Nếu timer này đang được bật nguồn
-            if (TimerList.timerItems.get(i).isPower()) {
-                if (TimerList.timerItems.get(i).getId() != DefaultTimerItem.timerPortA.getId() ||
-                        TimerList.timerItems.get(i).getId() != DefaultTimerItem.timerPortB.getId() ||
-                        TimerList.timerItems.get(i).getId() != DefaultTimerItem.timerPortC.getId()) {
-                    // Nếu là các timer thông thường
-                    // Tiến hành kiểm tra xem nó có còn trong khung giờ không
-                    if (TimeUtils.isInTimer(TimerList.timerItems.get(i).getStart(), TimerList.timerItems.get(i).getEnd())) {
+            if (Auto.powerValue) {
+                // Nếu chế độ tự động được bật, những timer thủ công sẽ được bỏ qua
+                if (TimerList.timerItems.get(i).getId() != DefaultTimerItem.timerPortA.getId() &&
+                        TimerList.timerItems.get(i).getId() != DefaultTimerItem.timerPortB.getId() &&
+                        TimerList.timerItems.get(i).getId() != DefaultTimerItem.timerPortC.getId() &&
+                        TimerList.timerItems.get(i).getId() != DefaultTimerItem.timerPortD.getId())
+                    continue;
+                else {
+                    // Nếu không phải là những timer thủ công, tiến hành kiếm tra điều kiện và bật/tắt
+                    try {
+                        int currHumidity = Integer.parseInt(CurrentDetail.humidity);
+                        int currTemperature = Integer.parseInt(CurrentDetail.temperature);
+
+                        if (TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortA.getId() ||
+                                TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortB.getId()) {
+                            // Nếu là các cổng máy bơm
+                            if (Auto.humidityStartValue <= currHumidity && currHumidity <= Auto.humidityEndValue && TimerList.timerItems.get(i).isPower()) {
+                                TimerList.timerItems.get(i).setState(true);
+                            } else {
+                                TimerList.timerItems.get(i).setState(false);
+                            }
+                        } else if (TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortC.getId()) {
+                            // Ngược lại đối với Port C là đèn, cung cấp nhiệt độ
+                            if (Auto.tempStartValue <= currTemperature && currTemperature < Auto.tempEndValue && TimerList.timerItems.get(i).isPower()) {
+                                TimerList.timerItems.get(i).setState(true);
+                            } else {
+                                TimerList.timerItems.get(i).setState(false);
+                            }
+                        } else {
+                            if (TimerList.timerItems.get(i).isPower())
+                                TimerList.timerItems.get(i).setState(true);
+                            else
+                                TimerList.timerItems.get(i).setState(false);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    ArduinoCommunity.sendCommand(TimerList.timerItems.get(i).getPort(), TimerList.timerItems.get(i).isState());
+                }
+            } else {
+                // Nếu chế độ tự động tắt, tiến hành tắt các timer tự động
+                if (TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortA.getId() ||
+                        TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortB.getId() ||
+                        TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortC.getId() ||
+                        TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortD.getId()) {
+                    TimerList.timerItems.get(i).setState(false);
+                    TimerList.timerItems.get(i).setPower(false);
+                } else {
+                    // Sau đó kiểm tra khung giờ bình thường
+                    if (TimeUtils.isInTimer(TimerList.timerItems.get(i).getStart(), TimerList.timerItems.get(i).getEnd()) && TimerList.timerItems.get(i).isPower()) {
                         TimerList.timerItems.get(i).setState(true);
 //                    Log.w(TAG, "checkStateUpdateAndSendData: Đang trong khung giờ.");
                     } else {
                         TimerList.timerItems.get(i).setState(false);
 //                    Log.e(TAG, "checkStateUpdateAndSendData: Đang ngoài khung giờ.");
                     }
-                } else {
-                    try {
-                        int currHumidity = Integer.parseInt(CurrentDetail.humidity);
-                        int currTemperature = Integer.parseInt(CurrentDetail.temperature);
-
-                        // Nếu là khung giờ mặc định của các cổng A,B,C
-                        if (TimeUtils.isInTimer(TimerList.timerItems.get(i).getStart(), TimerList.timerItems.get(i).getEnd())) {
-                            // Đối với hai máy bơm, cung cấp độ ẩm
-                            if (TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortA.getId() ||
-                                    TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortB.getId()) {
-                                if (currHumidity < Auto.humidityStartValue) {
-                                    TimerList.timerItems.get(i).setState(true);
-                                }
-
-                                if (currHumidity > Auto.humidityEndValue) {
-                                    TimerList.timerItems.get(i).setState(false);
-                                }
-                            } else {
-                                // Ngược lại đối với Port C là đèn, cung cấp nhiệt độ
-                                if (currTemperature < Auto.tempStartValue) {
-                                    TimerList.timerItems.get(i).setState(true);
-                                }
-
-                                if (currTemperature > Auto.tempEndValue) {
-                                    TimerList.timerItems.get(i).setState(false);
-                                }
-                            }
-                        } else {
-                            TimerList.timerItems.get(i).setState(false);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    ArduinoCommunity.sendCommand(TimerList.timerItems.get(i).getPort(), TimerList.timerItems.get(i).isState());
                 }
-            } else {
-                TimerList.timerItems.get(i).setState(false);
             }
             FirebaseConfig.updateData(TimerList.timerItems.get(i)); // -> Tự động sẽ được cập nhật
             // Tiến hành gửi thông tin xuống arduino
-            ArduinoCommunity.sendCommand(TimerList.timerItems.get(i).getPort(), TimerList.timerItems.get(i).isState());
         }
     }
 
-    public static void removeRemoveAndRefresh(long timerItemId) {
+    static void removeAndRefresh(long timerItemId) {
         List<TimerItem> timerItems = new ArrayList<>();
         if (TimerList.timerItems != null) {
             for (int i = 0; i < TimerList.timerItems.size(); i++) {
@@ -162,7 +142,9 @@ public class TimerList {
             }
             TimerList.timerItems.clear();
         }
-        if (TimerList.timerItems != null)
+        if (TimerList.timerItems != null) {
+            Collections.sort(TimerList.timerItems, new TimerItemComparator());
             TimerList.timerItems.addAll(timerItems);
+        }
     }
 }

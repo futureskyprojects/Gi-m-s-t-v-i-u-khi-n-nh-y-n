@@ -3,6 +3,7 @@ package vn.vistark.giam_sat_nha_yen.data.arduino_community;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.hardware.usb.UsbManager;
+import android.os.SystemClock;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,7 +50,12 @@ public class ArduinoCommunity {
     }
 
     public static boolean openConnection(final AppCompatActivity mContext) {
-        CommunityConfig.defaultUsbDeviceConnection = manager.openDevice(CommunityConfig.defaultUsbSerialDriver.getDevice());
+        try {
+            CommunityConfig.defaultUsbDeviceConnection = manager.openDevice(CommunityConfig.defaultUsbSerialDriver.getDevice());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return init(mContext);
+        }
         if (CommunityConfig.defaultUsbDeviceConnection == null) {
             Log.e(TAG, "Không thể mở kết nối đến thiết bị ngoại vi.");
             mContext.runOnUiThread(new Runnable() {
@@ -74,7 +80,7 @@ public class ArduinoCommunity {
             }
             if (CommunityConfig.defaultUsbSerialPort != null)
                 CommunityConfig.defaultUsbSerialPort.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -99,14 +105,23 @@ public class ArduinoCommunity {
     }
 
 
-    private static void openReadOrWrite(final DashboardScreenActivity mContext) {
+    public static void openReadOrWrite(final DashboardScreenActivity mContext) {
         try {
             while (true) {
+                if (CurrentDetail.humidity == "" && CurrentDetail.temperature == "") {
+                    byte[] bs = "a".getBytes();
+                    int numBytesWrite = CommunityConfig.defaultUsbSerialPort.write(bs, 500);
+                    if (numBytesWrite >= bs.length) {
+                        Log.i(TAG, "openReadOrWrite: Đã ghi thành công! (" + numBytesWrite + "/" + bs.length + ")");
+                    } else {
+                        Log.i(TAG, "openReadOrWrite: Ghi không thành công (" + numBytesWrite + "/" + bs.length + ")");
+                    }
+                }
+//                renew();
                 // Đọc
                 byte[] buffer = new byte[16];
                 int numBytesRead = 0;
                 try {
-                    ////////////////// LỖI Ở ĐÂY
                     numBytesRead = CommunityConfig.defaultUsbSerialPort.read(buffer, 1000);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -114,18 +129,31 @@ public class ArduinoCommunity {
                 }
                 String s = new String(buffer);
                 s = s.substring(0, numBytesRead);
+//                Log.e(TAG, "openReadOrWrite: " + s);
                 extractInfo(s, mContext);
+
+                ///
+
                 // Ghi
-                if (!CommunityConfig.buffer.isEmpty()) {
-                    Log.i(TAG, "Đã gửi: " + CommunityConfig.buffer);
-                    byte[] bytes = CommunityConfig.buffer.getBytes();
-                    int numBytesWrite = CommunityConfig.defaultUsbSerialPort.write(bytes, 1000);
-                    if (numBytesWrite >= bytes.length) {
-                        Log.i(TAG, "openReadOrWrite: Đã ghi thành công! (" + numBytesWrite + "/" + bytes.length + ")");
-                    } else {
-                        Log.i(TAG, "openReadOrWrite: Ghi không thành công (" + numBytesWrite + "/" + bytes.length + ")");
+//                if (CommunityConfig.buffer != CommunityConfig.bufferPrevious) {
+//                    CommunityConfig.bufferPrevious = CommunityConfig.buffer;
+//
+////                    renew();
+//
+//                }
+                if (CurrentDetail.humidity != "" && CurrentDetail.temperature != "") {
+                    String cmd = new String(CommunityConfig.buffer);
+                    cmd += "\r\n";
+                    if (!cmd.isEmpty()) {
+                        Log.i(TAG, "Đã gửi: " + cmd);
+                        byte[] bytes = cmd.getBytes();
+                        int numBytesWrite = CommunityConfig.defaultUsbSerialPort.write(bytes, 1000);
+                        if (numBytesWrite >= bytes.length) {
+                            Log.i(TAG, "openReadOrWrite: Đã ghi thành công! (" + numBytesWrite + "/" + bytes.length + ")");
+                        } else {
+                            Log.i(TAG, "openReadOrWrite: Ghi không thành công (" + numBytesWrite + "/" + bytes.length + ")");
+                        }
                     }
-                    CommunityConfig.buffer = "";
                 }
             }
         } catch (Exception e) {
@@ -140,6 +168,25 @@ public class ArduinoCommunity {
         }
     }
 
+    private static void renew() {
+        if (CommunityConfig.defaultUsbSerialPort != null) {
+            try {
+                CommunityConfig.defaultUsbSerialPort.close();
+                SystemClock.sleep(100);
+                CommunityConfig.defaultUsbSerialPort.open(CommunityConfig.defaultUsbDeviceConnection);
+                CommunityConfig.defaultUsbSerialPort.setParameters(
+                        CommunityConfig.defaultBaudrate,
+                        CommunityConfig.defaultDataBits,
+                        UsbSerialPort.DATABITS_8,
+                        UsbSerialPort.PARITY_NONE
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e(TAG, "Mở giao tiếp không thành công!");
+            }
+        }
+    }
+
     private static void extractInfo(String s, DashboardScreenActivity mContext) {
         final Pattern pattern = Pattern.compile("s[0-9]{4}e", Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(s);
@@ -148,7 +195,7 @@ public class ArduinoCommunity {
             if (gotted != null) {
                 CurrentDetail.temperature = gotted.substring(1, 3);
                 CurrentDetail.humidity = gotted.substring(3, 5);
-                Log.d(TAG, "Nhiệt độ " + CurrentDetail.temperature + " - Độ ẩm: " + CurrentDetail.humidity);
+//                Log.d(TAG, "Nhiệt độ " + CurrentDetail.temperature + " - Độ ẩm: " + CurrentDetail.humidity);
                 mContext.updateTemperature(CurrentDetail.temperature);
                 mContext.updateHumidityView(CurrentDetail.humidity);
                 FirebaseConfig.updateTemperatureAndHumidity();
@@ -169,23 +216,32 @@ public class ArduinoCommunity {
     }
 
     public static void sendCommand(String port, boolean state) {
-        if (CommunityConfig.buffer.length() > 512)
-            CommunityConfig.buffer = "";
-        if (port.equals("A") && state)
-            CommunityConfig.buffer += "1";
-        else
-            CommunityConfig.buffer += "0";
-        if (port.equals("B") && state)
-            CommunityConfig.buffer += "3";
-        else
-            CommunityConfig.buffer += "2";
-        if (port.equals("C") && state)
-            CommunityConfig.buffer += "5";
-        else
-            CommunityConfig.buffer += "4";
-        if (port.equals("D") && state)
-            CommunityConfig.buffer += "7";
-        else
-            CommunityConfig.buffer += "6";
+//        if (CommunityConfig.buffer.length() > 512)
+//            CommunityConfig.buffer = "";
+        if (port.matches("A")) {
+            if (state)
+                CommunityConfig.buffer[0] = '1';
+            else
+                CommunityConfig.buffer[0] = '0';
+        }
+        if (port.matches("B")) {
+            if (state)
+                CommunityConfig.buffer[1] = '3';
+            else
+                CommunityConfig.buffer[1] = '2';
+        }
+        if (port.matches("C")) {
+            if (state)
+                CommunityConfig.buffer[2] = '5';
+            else
+                CommunityConfig.buffer[2] = '4';
+        }
+        if (port.matches("D")) {
+            if (state)
+                CommunityConfig.buffer[3] = '7';
+            else
+                CommunityConfig.buffer[3] = '6';
+        }
+
     }
 }

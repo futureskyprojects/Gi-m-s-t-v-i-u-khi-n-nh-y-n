@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\Projects\\DieuKhienNhaYen\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
+            "outputFile": "F:\\Freelancer\\MyCode\\GiamSatDieuKhienNhaNuoiChimYen\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Vistark\\.gradle\\caches\\transforms-2\\files-2.1\\f8ccfb448ba3545203b2c9319e236e39\\appcompat-1.1.0\\res\\values-zh-rHK\\values-zh-rHK.xml",
@@ -18,23 +18,6 @@
                         "startOffsets": "105,200,293,393,475,572,680,757,833,925,1018,1109,1205,1301,1395,1491,1583,1675,1767,1844,1940,2035,2130,2227,2323,2421,2572,4981",
                         "endColumns": "94,92,99,81,96,107,76,75,91,92,90,95,95,93,95,91,91,91,76,95,94,94,96,95,97,150,93,77",
                         "endOffsets": "195,288,388,470,567,675,752,828,920,1013,1104,1200,1296,1390,1486,1578,1670,1762,1839,1935,2030,2125,2222,2318,2416,2567,2661,5054"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Vistark\\.gradle\\caches\\transforms-2\\files-2.1\\3afcd22420c5f66be4e23f5b1b8a57a8\\jetified-play-services-basement-17.0.0\\res\\values-zh-rHK\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "251",
-                        "endColumns": "166",
-                        "endOffsets": "417"
-                    },
-                    "to": {
-                        "startLines": "37",
-                        "startColumns": "4",
-                        "startOffsets": "3688",
-                        "endColumns": "166",
-                        "endOffsets": "3850"
                     }
                 },
                 {
@@ -69,6 +52,23 @@
                         "startOffsets": "5059",
                         "endColumns": "100",
                         "endOffsets": "5155"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Vistark\\.gradle\\caches\\transforms-2\\files-2.1\\86ffe6e6a949b5626962c3d7e4dbd057\\jetified-play-services-basement-17.0.0\\res\\values-zh-rHK\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "251",
+                        "endColumns": "166",
+                        "endOffsets": "417"
+                    },
+                    "to": {
+                        "startLines": "37",
+                        "startColumns": "4",
+                        "startOffsets": "3688",
+                        "endColumns": "166",
+                        "endOffsets": "3850"
                     }
                 }
             ]

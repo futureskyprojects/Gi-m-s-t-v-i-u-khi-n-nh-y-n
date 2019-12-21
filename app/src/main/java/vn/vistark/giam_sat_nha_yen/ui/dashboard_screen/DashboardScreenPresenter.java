@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +18,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import es.dmoral.toasty.Toasty;
+import vn.vistark.giam_sat_nha_yen.data.arduino_community.ArduinoCommunity;
+import vn.vistark.giam_sat_nha_yen.data.arduino_community.CommunityConfig;
 import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.data.modal.Auto;
 import vn.vistark.giam_sat_nha_yen.data.modal.DefaultTimerItem;
@@ -33,6 +37,7 @@ import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.KEY_PORT;
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.KEY_POWER;
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.KEY_START;
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.KEY_STATE;
+import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.autoRef;
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.timerRef;
 
 /**
@@ -62,6 +67,7 @@ public class DashboardScreenPresenter {
     }
 
 
+    // Cập nhật và hiển thị giờ hiện tại
     private void runningCurrentTime() {
         @SuppressLint("SimpleDateFormat") final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
         new Timer().schedule(new TimerTask() {
@@ -73,6 +79,7 @@ public class DashboardScreenPresenter {
         }, 1000, 1000);
     }
 
+    // Cập nhật và hiển thị giờ đã khởi chạy
     private void establishTime() {
         establishStartAt = System.currentTimeMillis();
         new Timer().schedule(new TimerTask() {
@@ -87,7 +94,11 @@ public class DashboardScreenPresenter {
                         if (NetworkUtils.isNetworkConnected(mContext)) {
                             if (noInternetDialog != null && noInternetDialog.isShowing()) {
                                 noInternetDialog.dismiss();
-                                VideoTransfer.init();
+                                if (VideoTransfer.init()) {
+                                    //
+                                } else {
+                                    Toasty.error(mContext, "Kết nối đến máy chủ hình ảnh thất bại, hãy khởi động lại", Toasty.LENGTH_SHORT, false).show();
+                                }
                             }
                         } else {
                             if (noInternetDialog != null && noInternetDialog.isShowing()) {
@@ -100,6 +111,7 @@ public class DashboardScreenPresenter {
         }, 1000, 1000);
     }
 
+    // Hiển thị hộp thoại xác nhận thoát hay không
     void powerOffConfirm() {
         SweetAlertDialog exitConfirm = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
         exitConfirm.setTitleText("ĐÓNG ỨNG DỤNG?");
@@ -127,52 +139,69 @@ public class DashboardScreenPresenter {
         }
     }
 
+
     void changeListByStateOfAutoPower(Boolean state) {
-        if (Auto.updatedPower) {
-            for (int i = 0; i < TimerList.timerItems.size(); i++) {
-                TimerItem timerItem = TimerList.timerItems.get(i);
-                if (timerItem.getId() != DefaultTimerItem.timerPortD.getId()) {
-                    if (timerItem.getId() == DefaultTimerItem.timerPortA.getId() ||
-                            timerItem.getId() == DefaultTimerItem.timerPortB.getId() ||
-                            timerItem.getId() == DefaultTimerItem.timerPortC.getId()) {
-                        timerItem.setPower(state);
-                    } else {
-                        timerItem.setPower(!state);
-                    }
-                    try {
-                        mTimerList.notifyDataChanged();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    FirebaseConfig.updateData(timerItem);
-                }
-            }
-        }
+        autoRef.child(Auto.powerKey).setValue(state);
     }
 
-    private void updateOrReplaceTimerItem(TimerItem timerItem) {
+    private void addOrUpdateTimerItem(TimerItem timerItem) {
         if (TimerList.timerItems == null) {
             TimerList.timerItems = new ArrayList<>();
         } else {
             // Tiến hành thêm cái mới
-            TimerList.removeRemoveAndRefresh(timerItem.getId());
-            TimerList.timerItems.add(0, timerItem);
-            mTimerList.notifyDataChanged();
+            boolean isHave = false;
+            for (int i = 0; i < TimerList.timerItems.size(); i++) {
+                if (TimerList.timerItems.get(i).getId() == timerItem.getId()) {
+                    TimerList.timerItems.get(i).update(timerItem);
+                    isHave = true;
+                    mTimerList.notifyDataChanged();
+                    break;
+                }
+            }
+//            TimerList.removeAndRefresh(timerItem.getId());
+            if (TimerList.timerItems.isEmpty() || !isHave) {
+                TimerList.timerItems.add(timerItem);
+                mTimerList.notifyDataChanged();
+            }
+//            Collections.sort(TimerList.timerItems, new TimerItemComparator());
         }
     }
 
     void loadTimerList(RecyclerView timerListView) {
         // Khởi tạo danh sách đã có
         TimerList.timerItems = new ArrayList<>();
+
+        // But nguồn auto
+        autoRef.child(Auto.powerKey).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    if (dataSnapshot.getValue() != null) {
+                        Auto.powerValue = Boolean.parseBoolean(dataSnapshot.getValue().toString());
+                        if (Auto.powerValue != mContext.getStateAutoPower()) {
+                            // Nếu nút nguồn cho chế độ tự động có sự thay đổi
+                            mContext.updateTimerAutoPower(Auto.powerValue);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(TAG, "Lỗi khi đọc dữ liệu.", databaseError.toException());
+            }
+        });
         // Lắng nghe thay đổi của danh sách từ firebase
         timerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+                DefaultTimerItem.check(dataSnapshot);
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     try {
-                        DefaultTimerItem.check(ds);
                         if (ds.getKey() != null) {
                             TimerItem timerItem = new TimerItem();
                             timerItem.setId(Long.parseLong(ds.getKey()));
@@ -192,7 +221,7 @@ public class DashboardScreenPresenter {
                                 }
                             }
                             // Cập nhật hoặc thêm mới vào đây
-                            updateOrReplaceTimerItem(timerItem);
+                            addOrUpdateTimerItem(timerItem);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

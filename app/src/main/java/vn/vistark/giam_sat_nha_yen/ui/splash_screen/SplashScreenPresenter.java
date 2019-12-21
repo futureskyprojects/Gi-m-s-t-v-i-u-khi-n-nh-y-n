@@ -65,6 +65,7 @@ class SplashScreenPresenter {
                     timer.cancel();
                     // Tiến hành chuyển sang mang hình bảng điều khiển
                     delayAndStartDashboardActivity(1000);
+                    //
                 }
             }
         }, 1000, 1000);

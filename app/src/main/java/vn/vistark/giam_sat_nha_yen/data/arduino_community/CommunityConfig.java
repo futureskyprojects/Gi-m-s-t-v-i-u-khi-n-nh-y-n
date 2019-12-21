@@ -16,8 +16,9 @@ public class CommunityConfig {
     public static UsbSerialDriver defaultUsbSerialDriver;
     public static UsbDeviceConnection defaultUsbDeviceConnection;
     public static UsbSerialPort defaultUsbSerialPort;
-    public static int defaultBaudrate = 9600;
+    public static int defaultBaudrate = 57600;
     public static int defaultDataBits = 8;
-    public static String buffer = "";
+    public static char[] buffer = new char[]{'0', '2', '4', '6'};
+    public static char[] bufferPrevious = new char[]{'0', '0', '0', '0'};
 
 }
