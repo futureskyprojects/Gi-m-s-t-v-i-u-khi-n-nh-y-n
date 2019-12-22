@@ -10,13 +10,6 @@ import vn.vistark.giam_sat_nha_yen.data.modal.TimerItem;
 import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_list.TimerListAdapter;
 
-/**
- * Project ĐK Nhà Yến
- * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
-
 public class TimerDialog {
     private static AlertDialog alertDialog;
 

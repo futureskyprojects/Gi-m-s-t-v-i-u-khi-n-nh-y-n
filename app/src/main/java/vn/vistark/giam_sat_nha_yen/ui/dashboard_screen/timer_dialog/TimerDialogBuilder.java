@@ -23,13 +23,6 @@ import es.dmoral.toasty.Toasty;
 import vn.vistark.giam_sat_nha_yen.R;
 import vn.vistark.giam_sat_nha_yen.utils.TimeUtils;
 
-/**
- * Project ĐK Nhà Yến
- * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
-
 class TimerDialogBuilder extends AlertDialog.Builder {
     private ImageView ivAddTimerIcon;
     private TextView tvAddTimerHeader;

@@ -23,13 +23,6 @@ import vn.vistark.giam_sat_nha_yen.data.modal.CurrentDetail;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity;
 import vn.vistark.giam_sat_nha_yen.utils.CommonUtils;
 
-/**
- * Project ĐK Nhà Yến
- * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
-
 public class ArduinoCommunity {
     public final static String TAG = ArduinoCommunity.class.getSimpleName();
 

@@ -5,13 +5,6 @@ import java.util.List;
 
 import vn.vistark.giam_sat_nha_yen.utils.TimeUtils;
 
-/**
- * Project ĐK Nhà Yến
- * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
-
 public class TimerItem {
     private long id = -1;
     private String label = "";
@@ -35,6 +28,17 @@ public class TimerItem {
         this.start = timerItem.getStart();
         this.end = timerItem.getEnd();
         this.detail = timerItem.getDetail();
+    }
+
+    public boolean compare(TimerItem timerItem) {
+        return this.id != timerItem.getId() ||
+                !this.label.equals(timerItem.getLabel()) ||
+                !this.port.equals(timerItem.getPort()) ||
+                this.power != timerItem.isPower() ||
+                this.state != timerItem.isState() ||
+                !this.start.equals(timerItem.getStart()) ||
+                !this.end.equals(timerItem.getEnd()) ||
+                !this.detail.equals(timerItem.getDetail());
     }
 
     public TimerItem(long id, String label, String port, boolean power, boolean state, String start, String end, String detail) {

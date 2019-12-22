@@ -11,13 +11,6 @@ import com.google.firebase.database.ValueEventListener;
 import vn.vistark.giam_sat_nha_yen.Config;
 import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 
-/**
- * Project ĐK Nhà Yến
- * Packagename: vn.vistark.giam_sat_nha_yen.data.modal
- * Created by Nguyễn Trọng Nghĩa on 10/28/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
 public class DefaultTimerItem {
     public final static String TAG = DefaultTimerItem.class.getSimpleName();
     public final static TimerItem timerPortA = new TimerItem(

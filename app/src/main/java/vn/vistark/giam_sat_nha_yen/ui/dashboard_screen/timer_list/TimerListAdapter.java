@@ -22,13 +22,6 @@ import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_dialog.TimerDialog;
 
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.timerRef;
 
-/**
- * Project ĐK Nhà Yến
- * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
-
 public class TimerListAdapter extends RecyclerView.Adapter<TimerListViewHolder> {
     private List<TimerItem> timerItems;
 

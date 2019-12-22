@@ -35,13 +35,6 @@ import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_dialog.TimerDialog;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.video_transfer.VideoTransfer;
 import vn.vistark.giam_sat_nha_yen.utils.ScreenUtils;
 
-/**
- * Project ĐK Nhà Yến
- * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
-
 public class DashboardScreenActivity extends AppCompatActivity implements BaseAppCompatActivity, CameraBridgeViewBase.CvCameraViewListener2 {
     private final static String TAG = DashboardScreenActivity.class.getSimpleName();
 
@@ -367,7 +360,6 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        Log.d(TAG, "onCameraFrame: ở đây");
         try {
             mRgba = inputFrame.rgba();
             final Bitmap bmp = Bitmap.createBitmap(mRgba.cols(), mRgba.rows(), Bitmap.Config.ARGB_8888);

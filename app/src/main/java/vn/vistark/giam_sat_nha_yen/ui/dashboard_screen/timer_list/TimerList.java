@@ -1,5 +1,7 @@
 package vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.timer_list;
 
+import android.util.Log;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,13 +20,6 @@ import vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig;
 import vn.vistark.giam_sat_nha_yen.utils.TimeUtils;
 import vn.vistark.giam_sat_nha_yen.utils.TimerItemComparator;
 
-/**
- * Project ĐK Nhà Yến
- * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
-
 public class TimerList {
     public final static String TAG = TimerList.class.getSimpleName();
 
@@ -39,6 +34,7 @@ public class TimerList {
         // Thiết lập danh sách theo chiều dọc
         LinearLayoutManager layoutManager = new LinearLayoutManager(mTimerList.getContext());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
+        mTimerList.setHasFixedSize(true);
 
         mTimerList.setLayoutManager(layoutManager);
         mTimerList.setAdapter(mTimerListApdater);
@@ -69,6 +65,7 @@ public class TimerList {
             return;
         // Lặp trong danh sách các cổng
         for (int i = 0; i < TimerList.timerItems.size(); i++) {
+            TimerItem previous = TimerList.timerItems.get(i);
             if (Auto.powerValue) {
                 // Nếu chế độ tự động được bật, những timer thủ công sẽ được bỏ qua
                 if (TimerList.timerItems.get(i).getId() != DefaultTimerItem.timerPortA.getId() &&
@@ -85,14 +82,14 @@ public class TimerList {
                         if (TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortA.getId() ||
                                 TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortB.getId()) {
                             // Nếu là các cổng máy bơm
-                            if ((Auto.humidityStartValue >= currHumidity && currHumidity >= Auto.humidityEndValue) && TimerList.timerItems.get(i).isPower()) {
+                            if (((currHumidity < Auto.humidityStartValue) || (currTemperature > Auto.tempEndValue)) && TimerList.timerItems.get(i).isPower()) {
                                 TimerList.timerItems.get(i).setState(true);
                             } else {
                                 TimerList.timerItems.get(i).setState(false);
                             }
                         } else if (TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortC.getId()) {
                             // Ngược lại đối với Port C là đèn, cung cấp nhiệt độ
-                            if ((Auto.tempStartValue >= currTemperature || currTemperature >= Auto.tempEndValue) && TimerList.timerItems.get(i).isPower()) {
+                            if (((currTemperature < Auto.tempStartValue) || (currHumidity > Auto.humidityEndValue)) && TimerList.timerItems.get(i).isPower()) {
                                 TimerList.timerItems.get(i).setState(true);
                             } else {
                                 TimerList.timerItems.get(i).setState(false);
@@ -128,7 +125,10 @@ public class TimerList {
                     ArduinoCommunity.sendCommand(TimerList.timerItems.get(i).getPort(), TimerList.timerItems.get(i).isState());
                 }
             }
-            FirebaseConfig.updateData(TimerList.timerItems.get(i)); // -> Tự động sẽ được cập nhật
+            if (previous.compare(TimerList.timerItems.get(i))) {
+                Log.d(TAG, "checkStateUpdateAndSendData: Đã cập nhập");
+                FirebaseConfig.updateData(TimerList.timerItems.get(i)); // -> Tự động sẽ được cập nhật
+            }
             // Tiến hành gửi thông tin xuống arduino
         }
     }

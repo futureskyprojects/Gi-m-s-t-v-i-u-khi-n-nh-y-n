@@ -71,7 +71,7 @@ public class VideoTransfer {
     public static boolean send(Bitmap bitmap) {
         if (listener.isConnected) {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 30, stream);
             byte[] byteArray = stream.toByteArray();
             ByteString byteString = ByteString.of(byteArray, 0, byteArray.length);
             return ws.send(byteString);

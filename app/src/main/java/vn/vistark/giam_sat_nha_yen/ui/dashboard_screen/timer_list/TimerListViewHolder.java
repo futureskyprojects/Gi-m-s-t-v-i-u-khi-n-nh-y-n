@@ -11,13 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import vn.vistark.giam_sat_nha_yen.R;
 import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity;
 
-/**
- * Project ĐK Nhà Yến
- * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
-
 class TimerListViewHolder extends RecyclerView.ViewHolder {
     private TextView tvTimerItemId;
     private TextView tvTimerItemLabel;

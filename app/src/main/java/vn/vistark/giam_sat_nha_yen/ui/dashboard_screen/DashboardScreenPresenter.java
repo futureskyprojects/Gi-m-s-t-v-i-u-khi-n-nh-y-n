@@ -40,13 +40,6 @@ import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.KEY_STATE
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.autoRef;
 import static vn.vistark.giam_sat_nha_yen.data.firebase.FirebaseConfig.timerRef;
 
-/**
- * Project ĐK Nhà Yến
- * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
-
 public class DashboardScreenPresenter {
     private final static String TAG = DashboardScreenPresenter.class.getSimpleName();
 
@@ -142,6 +135,12 @@ public class DashboardScreenPresenter {
 
     void changeListByStateOfAutoPower(Boolean state) {
         autoRef.child(Auto.powerKey).setValue(state);
+        if (state) {
+            FirebaseConfig.updateData(DefaultTimerItem.timerPortA.setPower(true));
+            FirebaseConfig.updateData(DefaultTimerItem.timerPortB.setPower(true));
+            FirebaseConfig.updateData(DefaultTimerItem.timerPortC.setPower(true));
+            FirebaseConfig.updateData(DefaultTimerItem.timerPortD.setPower(true));
+        }
     }
 
     private void addOrUpdateTimerItem(TimerItem timerItem) {

@@ -8,13 +8,6 @@ import vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.video_transfer.VideoTrans
 import vn.vistark.giam_sat_nha_yen.utils.NetworkUtils;
 import vn.vistark.giam_sat_nha_yen.utils.PermissionUtils;
 
-/**
- * Project ĐK Nhà Yến
- * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
-
 class SplashScreenPresenter {
     private final static String TAG = SplashScreenPresenter.class.getSimpleName();
 

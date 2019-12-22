@@ -12,13 +12,6 @@ import vn.vistark.giam_sat_nha_yen.data.modal.Auto;
 import vn.vistark.giam_sat_nha_yen.data.modal.CurrentDetail;
 import vn.vistark.giam_sat_nha_yen.data.modal.TimerItem;
 
-/**
- * Project ĐK Nhà Yến
- * Created by Nguyễn Trọng Nghĩa on 10/19/2019.
- * Organization: Vistark Team
- * Email: dev.vistark@gmail.com
- */
-
 public class FirebaseConfig {
     private final static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public final static DatabaseReference myRef = database.getReference(Config.DEVEICE_NAME);
