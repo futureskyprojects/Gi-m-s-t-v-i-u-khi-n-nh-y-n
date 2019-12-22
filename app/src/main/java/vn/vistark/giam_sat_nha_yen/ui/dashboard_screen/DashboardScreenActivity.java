@@ -367,19 +367,17 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
+        Log.d(TAG, "onCameraFrame: ở đây");
         try {
-            long s = System.currentTimeMillis();
             mRgba = inputFrame.rgba();
-            Bitmap bmp = Bitmap.createBitmap(mRgba.cols(), mRgba.rows(), Bitmap.Config.ARGB_8888);
+            final Bitmap bmp = Bitmap.createBitmap(mRgba.cols(), mRgba.rows(), Bitmap.Config.ARGB_8888);
             Utils.matToBitmap(mRgba, bmp);
-            final Bitmap finalBmp = bmp;
-            VideoTransfer.send(bmp);
             if (ivImageCaptured.getVisibility() == View.VISIBLE) {
                 // Nếu đang hiển thị khung nhìn cho 1 cam duy nhất
                 ivImageCaptured.post(new Runnable() {
                     @Override
                     public void run() {
-                        ivImageCaptured.setImageBitmap(finalBmp);
+                        ivImageCaptured.setImageBitmap(bmp);
                     }
                 });
             } else if (ivImageCapturedS1.getVisibility() == View.VISIBLE) {
@@ -387,10 +385,11 @@ public class DashboardScreenActivity extends AppCompatActivity implements BaseAp
                 ivImageCapturedS1.post(new Runnable() {
                     @Override
                     public void run() {
-                        ivImageCapturedS1.setImageBitmap(finalBmp);
+                        ivImageCapturedS1.setImageBitmap(bmp);
                     }
                 });
             }
+            VideoTransfer.send(bmp);
         } catch (Exception e) {
             //e.printStackTrace();
         }

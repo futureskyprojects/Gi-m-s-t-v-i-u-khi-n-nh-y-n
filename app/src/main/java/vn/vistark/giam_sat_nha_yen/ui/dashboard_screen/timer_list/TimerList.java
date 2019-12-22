@@ -85,14 +85,14 @@ public class TimerList {
                         if (TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortA.getId() ||
                                 TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortB.getId()) {
                             // Nếu là các cổng máy bơm
-                            if (Auto.humidityStartValue <= currHumidity && currHumidity <= Auto.humidityEndValue && TimerList.timerItems.get(i).isPower()) {
+                            if ((Auto.humidityStartValue >= currHumidity && currHumidity >= Auto.humidityEndValue) && TimerList.timerItems.get(i).isPower()) {
                                 TimerList.timerItems.get(i).setState(true);
                             } else {
                                 TimerList.timerItems.get(i).setState(false);
                             }
                         } else if (TimerList.timerItems.get(i).getId() == DefaultTimerItem.timerPortC.getId()) {
                             // Ngược lại đối với Port C là đèn, cung cấp nhiệt độ
-                            if (Auto.tempStartValue <= currTemperature && currTemperature < Auto.tempEndValue && TimerList.timerItems.get(i).isPower()) {
+                            if ((Auto.tempStartValue >= currTemperature || currTemperature >= Auto.tempEndValue) && TimerList.timerItems.get(i).isPower()) {
                                 TimerList.timerItems.get(i).setState(true);
                             } else {
                                 TimerList.timerItems.get(i).setState(false);
