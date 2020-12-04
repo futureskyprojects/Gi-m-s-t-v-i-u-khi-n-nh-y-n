@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     android:orientation="vertical"
-    tools:context="vn.vistark.giam_sat_nha_yen.ui.dashboard_screen.DashboardScreenActivity">
+    tools:context="vn.vistark.dknncy.ui.dashboard_screen.DashboardScreenActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:textSize="24sp" />
 
         <ImageView
-            android:id="@+id/appPowerOff"
+            android:id="@+id/ivAppPowerOffButton"
             android:layout_width="?android:actionBarSize"
             android:layout_height="?android:actionBarSize"
             android:layout_alignParentEnd="true"
@@ -60,6 +60,7 @@
             android:background="@drawable/moonlit_asteroid"
             android:orientation="vertical">
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,23 +80,23 @@
                 android:layout_height="30dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/line_break"
-                android:tint="@android:color/white" />
+                app:tint="@android:color/white" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/timerList"
+                    android:id="@+id/rvTimerList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@id/addNewTimerBtn" />
+                    android:layout_above="@id/btnAddNewTimer" />
 
                 <TextView
-                    android:id="@+id/timerListEmptyNotify"
+                    android:id="@+id/tvTimerListEmptyNotify"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@id/addNewTimerBtn"
+                    android:layout_above="@id/btnAddNewTimer"
                     android:gravity="center"
                     android:padding="15dp"
                     android:text="Chưa có mục hẹn giờ nào."
@@ -104,7 +105,7 @@
                     android:textSize="14sp" />
 
                 <Button
-                    android:id="@+id/addNewTimerBtn"
+                    android:id="@+id/btnAddNewTimer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -147,7 +148,7 @@
                     android:layout_below="@id/x012"
                     android:scaleType="fitXY"
                     android:src="@drawable/line_break"
-                    android:tint="@android:color/white" />
+                    app:tint="@android:color/white" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -157,10 +158,10 @@
                     android:padding="10dp">
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:layout_gravity="center"
-                        android:id="@+id/timerAutoPower"
+                        android:id="@+id/scTimerAutoPower"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp" />
 
@@ -176,7 +177,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/multiCameraButton"
+                    android:id="@+id/lnMultiCameraButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -192,7 +193,7 @@
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:src="@drawable/menu"
-                        android:tint="@android:color/white" />
+                        app:tint="@android:color/white" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -226,18 +227,17 @@
                     </LinearLayout>
 
                     <org.opencv.android.JavaCameraView
-                        android:id="@+id/imageCaptureFrame"
+                        android:id="@+id/mOpenCvCameraView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
                         android:background="#000"
-                        android:visibility="gone"
                         app:camera_id="any"
                         app:show_fps="false" />
 
                     <ImageView
-                        android:id="@+id/imageCaptured"
+                        android:id="@+id/ivImageCaptured"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="15dp"
@@ -246,7 +246,7 @@
                         android:visibility="gone" />
 
                     <LinearLayout
-                        android:id="@+id/multiCamLayout"
+                        android:id="@+id/lnMultiCamLayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#899"
@@ -267,7 +267,7 @@
                                 android:layout_weight="1">
 
                                 <ImageView
-                                    android:id="@+id/imageCapturedS1"
+                                    android:id="@+id/ivImageCapturedS1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="15dp"
@@ -282,7 +282,7 @@
                                 android:layout_weight="1">
 
                                 <ImageView
-                                    android:id="@+id/imageCapturedS2"
+                                    android:id="@+id/ivImageCapturedS2"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="7.5dp"
@@ -305,7 +305,7 @@
                                 android:layout_weight="1">
 
                                 <ImageView
-                                    android:id="@+id/imageCapturedS3"
+                                    android:id="@+id/ivImageCapturedS3"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="15dp"
@@ -320,7 +320,7 @@
                                 android:layout_weight="1">
 
                                 <ImageView
-                                    android:id="@+id/imageCapturedS4"
+                                    android:id="@+id/ivImageCapturedS4"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_marginStart="7.5dp"
@@ -374,7 +374,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
-                                android:id="@+id/currentTime"
+                                android:id="@+id/tvCurrentTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -410,7 +410,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
-                                android:id="@+id/establishTime"
+                                android:id="@+id/tvEstablishTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -444,7 +444,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
-                                android:id="@+id/autoTemp"
+                                android:id="@+id/tvAutoTemp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -489,7 +489,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
-                                android:id="@+id/humidity"
+                                android:id="@+id/tvHumidity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -522,7 +522,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
-                                android:id="@+id/temperature"
+                                android:id="@+id/tvTemperature"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -556,7 +556,7 @@
                                 android:textSize="18sp" />
 
                             <TextView
-                                android:id="@+id/autoHumidity"
+                                android:id="@+id/tvAutoHumidity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"

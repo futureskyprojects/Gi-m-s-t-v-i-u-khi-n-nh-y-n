@@ -1,33 +1,47 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    signingConfigs {
+        release {
+            storeFile file('D:\\Android\\GiamSatDieuKhienNhaNuoiChimYen\\key.jks')
+            storePassword '22121223'
+            keyAlias 'key'
+            keyPassword '22121223'
+        }
+    }
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "vn.vistark.dk_nha_yen"
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1910231956
-        versionName "2019.10.23-1956"
+        targetSdkVersion 30
+        versionCode 2012031
+        versionName "2020.12.03-1"
+        multiDexEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.firebase:firebase-database:19.2.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.firebase:firebase-database:19.5.1'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // https://github.com/square/retrofit - Dành cho structure API
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
@@ -40,13 +54,13 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
     // https://github.com/hdodenhof/CircleImageView - Dành cho bo tròn ảnh
-    implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     // https://github.com/GrenderG/Toasty - Dành cho việc hiển thị toast
     implementation 'com.github.GrenderG:Toasty:1.4.2'
 
     // https://developer.android.com/jetpack/androidx/releases/recyclerview - Dành cho hiển thị danh sách
-    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     // https://jitpack.io/p/Leogiroux/sweet-alert-dialog - Dành cho việc hiển thị các hộp thoại thông báo
     implementation 'com.github.f0ris.sweetalert:library:1.5.1'

@@ -1,4 +1,4 @@
-#Sun Dec 22 12:00:23 ICT 2019
-base.0=F\:\\Freelancer\\MyCode\\GiamSatDieuKhienNhaNuoiChimYen\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes.dex
+#Fri Dec 04 10:12:59 ICT 2020
+base.0=D\:\\Android\\GiamSatDieuKhienNhaNuoiChimYen\\app\\build\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

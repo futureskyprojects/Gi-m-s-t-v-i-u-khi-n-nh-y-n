@@ -4,34 +4,35 @@
     android:id="@+id/timerItemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
+    android:layout_marginBottom="5dp"
     android:background="@drawable/dull"
     android:clickable="true"
     android:focusable="true">
 
     <TextView
         android:id="@+id/timerItemId"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_marginStart="-30dp"
         android:background="@drawable/burning_orange"
-        android:padding="5dp"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:paddingHorizontal="10dp"
         android:rotation="-90"
-        android:shadowColor="@android:color/holo_orange_light"
-        android:shadowDx="2"
-        android:shadowDy="1"
-        android:shadowRadius="2"
+        android:singleLine="true"
         android:text="1998"
         android:textColor="@color/whiteSmokeWhite"
         android:textFontWeight="400"
-        android:textSize="16sp" />
+        android:textSize="11sp" />
 
     <LinearLayout
-        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="-30dp"
         android:layout_toStartOf="@id/timerSwitchCompat"
         android:layout_toEndOf="@id/timerItemId"
         android:orientation="vertical">
@@ -42,6 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
             android:text="HẸN GIỜ CỔNG F - 1998"
             android:textColor="#2980b9"
             android:textFontWeight="400"
@@ -64,7 +68,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     android:src="@drawable/play_arrow" />
 
                 <TextView
@@ -75,7 +79,7 @@
                     android:text="14:00"
                     android:textAlignment="center"
                     android:textColor="#00b894"
-                    android:textSize="21dp" />
+                    android:textSize="21sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -87,7 +91,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     android:src="@drawable/stop" />
 
                 <TextView
@@ -98,7 +102,7 @@
                     android:text="14:00"
                     android:textAlignment="center"
                     android:textColor="#e74c3c"
-                    android:textSize="21dp" />
+                    android:textSize="21sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
